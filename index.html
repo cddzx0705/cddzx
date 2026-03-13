@@ -3406,7 +3406,6 @@ ONLINE
 </div>
 <p>iOS Version : {{device.ios}}</p>
 <p>Device : {{device.model}}</p>
-<p>Battery : {{device.battery}}%</p>
 </span>
 </p>
 <div class="contactBar">
@@ -3624,7 +3623,7 @@ toast.classList.remove("show");
 },2500);
 
 }
-const API_URL="https://script.google.com/macros/s/AKfycbwl3ofmxcsX1gKHwj5tkU4CluboOGDX2vuxiiexfkNrw73UeTFNUPpLPPmUnps8wUt0/exec";
+const API_URL="https://script.google.com/macros/s/AKfycbw43pykpID7XGhCly0hUbviiFYFwNgL2NgN8twIRNEfbGVXjpVpS9Gt-vqbnJPiyhnM/exec";
 fetch(API_URL+"?key="+encodeURIComponent(this.userKey))
 .then(r=>r.json())
 .then(data=>{
