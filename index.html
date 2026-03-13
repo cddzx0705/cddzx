@@ -1,0 +1,5507 @@
+<!DOCTYPE html>
+<html>
+
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JSFiddle 8sogaqph</title>
+
+  <style>
+    /* ===== CONTACT ICON ===== */
+
+.contactBox{
+margin-top:15px;
+display:flex;
+gap:15px;
+}
+<!-- INFO -->
+<div v-if="tab==='info'" class="slide">
+
+<h3>Contact</h3>
+<p class="build">Build by FASTOP IOS</p>
+
+<div class="contactRow">
+<img class="iconImg"
+src="https://upload.wikimedia.org/wikipedia/commons/9/91/Icon_of_Zalo.svg">
+<div>
+<div class="title">Zalo</div>
+<div class="sub">Chat hỗ trợ nhanh</div>
+</div>
+<a href="https://zalo.me/0396134792" target="_blank" class="open">Open</a>
+</div>
+
+<div class="contactRow">
+<i class="fa-brands fa-facebook-f icon fb"></i>
+<div>
+<div class="title">Facebook</div>
+<div class="sub">Trang chính thức</div>
+</div>
+<a href="https://facebook.com" target="_blank" class="open">Open</a>
+</div>
+
+<div class="contactRow">
+<i class="fa-solid fa-phone icon phone"></i>
+<div>
+<div class="title">Phone</div>
+<div class="sub">0396 134 792</div>
+</div>
+<a href="tel:0396134792" class="open">Call</a>
+</div>
+<div v-if="tab==='info'">
+
+<div class="profile">
+
+<img class="avatar"
+src="https://i.imgur.com/3ZQ3Z6K.png">
+.icon{
+width:24px;
+height:24px;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+border-radius:6px;
+
+color:white;
+font-size:13px;
+
+box-shadow:
+inset 0 1px 2px rgba(255,255,255,.25),
+0 2px 4px rgba(0,0,0,.4);
+}
+
+/* Facebook giống iOS */
+
+.fb{
+background:#1877f2;
+}
+.icon:active{
+transform:scale(.9);
+transition:.1s;
+}
+
+/* Phone giống iOS */
+
+.phone{
+background:#34c759;
+}
+<div class="profileText">
+<div class="name">FASTOP IOS</div>
+<div class="status">
+<span class="dot"></span> ONLINE
+</div>
+</div>
+
+</div>
+
+<div class="contactRow ripple"
+onclick="haptic()">
+
+<img class="iconImg"
+src="https://upload.wikimedia.org/wikipedia/commons/9/91/Icon_of_Zalo.svg">
+
+<span>Zalo</span>
+
+<a href="https://zalo.me/0396134792" target="_blank">Open</a>
+
+</div>
+
+
+<div class="contactRow ripple"
+onclick="haptic()">
+
+<i class="fa-brands fa-facebook-f icon fb"></i>
+
+<span>Facebook</span>
+
+<a href="https://facebook.com/cducdz" target="_blank">Open</a>
+
+</div>
+
+
+<div class="contactRow ripple"
+onclick="haptic()">
+
+<i class="fa-solid fa-phone icon phone"></i>
+
+<span>Call</span>
+
+<a href="tel:0396134792">Call</a>
+
+</div>
+
+</div>
+</div>
+.contactIcon{
+width:42px;
+height:42px;
+border-radius:10px;
+display:flex;
+align-items:center;
+justify-content:center;
+background:#111;
+cursor:pointer;
+transition:0.25s;
+font-size:20px;
+}
+
+.contactIcon:hover{
+transform:scale(1.15);
+box-shadow:0 0 10px #ff0055;
+}
+
+.fb{color:#1877f2;}
+.zalo{color:#00b7ff;}
+.phone{color:#00ff95;}
+
+/* ===== BODY ===== */
+
+body{
+margin:0;
+background:#0b0b0b;
+font-family:Arial;
+color:white;
+overflow:hidden;
+}
+
+/* ===== RGB BORDER ===== */
+
+@keyframes rgb{
+0%{box-shadow:0 0 10px red}
+25%{box-shadow:0 0 10px orange}
+50%{box-shadow:0 0 10px cyan}
+75%{box-shadow:0 0 10px purple}
+100%{box-shadow:0 0 10px red}
+}
+body::before{
+content:"";
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+
+background:radial-gradient(
+circle at center,
+rgba(255,0,85,0.08),
+transparent 70%
+);
+
+pointer-events:none;
+animation:pulse 6s infinite;
+}
+
+@keyframes pulse{
+0%,100%{opacity:.4}
+50%{opacity:.9}
+}
+/* ===== MENU BOX ===== */
+
+.menu{
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+
+width:700px;
+height:500px;
+
+backdrop-filter:blur(20px);
+background:rgba(20,20,20,0.65);
+
+border-radius:18px;
+
+display:flex;
+overflow:hidden;
+}
+
+/* ===== SIDEBAR ===== */
+
+.sidebar{
+width:120px;
+background:rgba(0,0,0,0.6);
+
+display:flex;
+flex-direction:column;
+align-items:center;
+
+padding-top:15px;
+
+border-right:1px solid #333;
+}
+
+.tab{
+width:85px;
+height:55px;
+
+margin:8px;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+border-radius:12px;
+
+background:#111;
+
+cursor:pointer;
+
+font-size:24px;
+
+transition:.25s;
+}
+
+.tab:hover{
+transform:scale(1.1);
+background:#222;
+}
+
+.active{
+background:#ff0055;
+box-shadow:0 0 8px #ff0055;
+}
+
+/* ===== CONTENT ===== */
+
+.content{
+flex:1;
+padding:25px;
+font-size:16px;
+}
+
+@keyframes fade{
+from{opacity:0;transform:translateX(10px)}
+to{opacity:1}
+}
+
+/* ===== IOS SWITCH ===== */
+
+.switch{
+position:relative;
+display:inline-block;
+width:50px;
+height:28px;
+}
+
+.switch input{
+opacity:0;
+width:0;
+height:0;
+}
+
+.slider{
+position:absolute;
+cursor:pointer;
+top:0;
+left:0;
+right:0;
+bottom:0;
+background:#3a3a3c;
+border-radius:34px;
+transition:.35s;
+}
+
+.slider:before{
+position:absolute;
+content:"";
+height:24px;
+width:24px;
+left:2px;
+top:2px;
+background:white;
+border-radius:50%;
+transition:.35s;
+box-shadow:0 2px 6px rgba(0,0,0,.4);
+}
+
+input:checked + .slider{
+background:#34c759;
+}
+
+input:checked + .slider:before{
+transform:translateX(22px);
+}
+@keyframes islandOpen{
+0%{
+transform:translate(-50%,-20%) scale(.2);
+opacity:0;
+}
+
+100%{
+transform:translate(-50%,-50%) scale(1);
+opacity:1;
+}
+}
+
+.menu{
+animation:islandOpen .35s ease;
+}
+
+
+/* ===== OPTION ROW ===== */
+
+.row{
+display:flex;
+align-items:center;
+justify-content:space-between;
+margin:12px 0;
+font-size:14px;
+}
+
+/* ===== FLOAT BUTTON ===== */
+
+.floatBtn{
+  .floatBtn{
+transition:.3s;
+}
+
+.floatBtn:hover{
+transform:scale(1.15) rotate(90deg);
+box-shadow:0 0 20px #ff0055;
+}
+position:fixed;
+right:20px;
+bottom:20px;
+width:45px;
+height:45px;
+border-radius:50%;
+background:#ff0055;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:22px;
+cursor:pointer;
+box-shadow:0 0 12px #ff0055;
+}body{
+margin:0;
+background:#0b0b0b;
+font-family:Arial;
+color:white;
+}
+body::before{
+content:"";
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+
+background:
+radial-gradient(circle at 30% 30%, rgba(255,0,120,0.15), transparent 40%),
+radial-gradient(circle at 70% 60%, rgba(0,200,255,0.15), transparent 40%);
+
+animation:lightMove 10s infinite alternate;
+
+pointer-events:none;
+}
+
+@keyframes lightMove{
+0%{transform:translateY(-20px)}
+100%{transform:translateY(20px)}
+}
+/* RGB BORDER */
+let menu=document.querySelector(".menu")
+
+let isDown=false
+let offset=[0,0]
+
+menu.addEventListener("mousedown",e=>{
+isDown=true
+offset=[
+menu.offsetLeft-e.clientX,
+menu.offsetTop-e.clientY
+]
+})
+
+document.addEventListener("mouseup",()=>isDown=false)
+
+document.addEventListener("mousemove",e=>{
+if(isDown){
+menu.style.left=e.clientX+offset[0]+"px"
+menu.style.top=e.clientY+offset[1]+"px"
+menu.style.transform="none"
+}
+})
+@keyframes rgb{
+0%{box-shadow:0 0 12px red}
+25%{box-shadow:0 0 12px orange}
+50%{box-shadow:0 0 12px cyan}
+75%{box-shadow:0 0 12px purple}
+100%{box-shadow:0 0 12px red}
+}
+.toast{
+position:fixed;
+top:20px;
+left:50%;
+transform:translateX(-50%);
+
+background:rgba(0,0,0,0.8);
+backdrop-filter:blur(10px);
+
+padding:10px 18px;
+border-radius:10px;
+
+font-size:14px;
+color:#fff;
+
+box-shadow:0 0 10px rgba(0,255,150,.6);
+
+animation:toastIn .3s;
+z-index:999;
+}
+
+@keyframes toastIn{
+from{
+opacity:0;
+transform:translate(-50%,-20px);
+}
+to{
+opacity:1;
+transform:translate(-50%,0);
+}
+}
+
+
+
+/* MENU */
+.toast{
+position:fixed;
+top:20px;
+right:20px;
+
+padding:12px 18px;
+
+border-radius:12px;
+
+display:flex;
+align-items:center;
+gap:8px;
+
+font-size:14px;
+
+backdrop-filter:blur(12px);
+
+animation:toastSlide .35s;
+
+z-index:999;
+}
+<div v-if="tab==='home'">
+
+<div class="homeProfile">
+
+<img class="homeAvatar"
+src="https://i.imgur.com/3ZQ3Z6K.png">
+
+<div class="homeInfo">
+
+<div class="homeName">FASTOP IOS</div>
+
+<div class="homeStatus">
+<span class="statusDot"></span>
+ONLINE
+</div>
+
+</div>
+</div>
+
+<p>Status : Premium</p>
+<p>Version : 2.0</p>
+
+</div>
+
+/* bật */
+
+.toast.on{
+background:rgba(0,200,120,0.2);
+border:1px solid #00ff95;
+box-shadow:0 0 12px #00ff95;
+}
+<div class="batteryBox">
+  <div class="batteryIcon">
+      <div id="batteryFill"></div>
+      <div id="batteryBolt">⚡</div>
+  </div>
+  <span id="batteryText">--%</span>
+</div>
+/* tắt */
+
+.toast.off{
+background:rgba(255,0,80,0.2);
+border:1px solid #ff0055;
+box-shadow:0 0 12px #ff0055;
+}
+
+.toastIcon{
+font-weight:bold;
+font-size:16px;
+}
+<div class="versionPopup" v-if="versionSelect">
+
+<div class="versionBox">
+
+<h3>Chọn phiên bản</h3>
+
+<div class="verBtn"
+@click="selectVersion('Free Fire')">
+Free Fire
+</div>
+
+<div class="verBtn"
+@click="selectVersion('Free Fire MAX')">
+Free Fire MAX
+</div>
+
+</div>
+
+</div>
+
+/* animation */
+
+@keyframes toastSlide{
+
+from{
+opacity:0;
+transform:translateX(60px);
+}
+
+to{
+opacity:1;
+transform:translateX(0);
+}
+.toastWrap{
+position:fixed;
+top:20px;
+right:20px;
+
+display:flex;
+flex-direction:column;
+gap:10px;
+
+z-index:999;
+}
+
+/* từng thông báo */
+
+.toast{
+min-width:200px;
+padding:12px 18px;
+
+border-radius:12px;
+
+display:flex;
+align-items:center;
+gap:8px;
+
+font-size:14px;
+
+backdrop-filter:blur(12px);
+
+animation:toastSlide .35s;
+}
+
+/* bật */
+
+.toast.on{
+background:rgba(0,200,120,0.2);
+border:1px solid #00ff95;
+box-shadow:0 0 12px #00ff95;
+}
+
+/* tắt */
+
+.toast.off{
+background:rgba(255,0,80,0.2);
+border:1px solid #ff0055;
+box-shadow:0 0 12px #ff0055;
+}
+
+.toastIcon{
+font-weight:bold;
+}
+
+/* animation */
+
+@keyframes toastSlide{
+from{
+opacity:0;
+transform:translateX(70px);
+}
+to{
+opacity:1;
+transform:translateX(0);
+}
+}
+}
+.menu{
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+
+/* TỶ LỆ APP DỌC */
+width:380px;
+height:720px;
+
+backdrop-filter:blur(25px) saturate(180%);
+-webkit-backdrop-filter:blur(25px) saturate(180%);
+
+background:rgba(25,25,25,0.55);
+
+border-radius:32px; /* giống iPhone */
+
+border:1px solid rgba(255,255,255,0.08);
+
+display:flex;
+overflow:hidden;
+}
+.toast{
+transition:.25s;
+}
+.toast{
+transition:all .35s ease;
+}
+
+.toast.leave{
+opacity:0;
+transform:translateX(60px) translateY(-10px);
+}
+
+/* SIDEBAR */
+
+.sidebar{
+width:80px;
+background:rgba(0,0,0,0.55);
+
+display:flex;
+flex-direction:column;
+align-items:center;
+
+padding-top:20px;
+
+border-right:1px solid rgba(255,255,255,.08);
+}
+
+/* TAB */
+
+.tab{
+width:56px;
+height:56px;
+
+margin:10px 0;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+border-radius:16px;
+
+background:rgba(255,255,255,0.06);
+
+font-size:22px;
+
+transition:.25s;
+}
+
+.tab:active{
+transform:scale(.9);
+}
+
+.tab:hover{
+transform:scale(1.1);
+background:#222;
+}
+
+.active{
+background:#ff0055;
+box-shadow:0 0 10px #ff0055;
+}
+
+/* CONTENT */
+.content{
+flex:1;
+padding:20px;
+overflow-y:auto;
+}
+/* STARTING FILES */
+
+.startBox{
+display:flex;
+margin-top:10px;
+border-radius:8px;
+overflow:hidden;
+}
+
+.startBtn{
+flex:1;
+padding:12px;
+text-align:center;
+font-weight:bold;
+cursor:pointer;
+}
+
+.startBtn.on{
+background:#555;
+}
+
+.startBtn.off{
+background:#ff2a2a;
+}
+
+/* VERSION POPUP */
+
+.versionPopup{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.6);
+display:flex;
+align-items:center;
+justify-content:center;
+z-index:9999;
+}
+
+.versionBox{
+background:#111;
+padding:20px;
+border-radius:14px;
+width:240px;
+text-align:center;
+}
+
+.verBtn{
+margin-top:10px;
+padding:10px;
+background:#222;
+border-radius:8px;
+cursor:pointer;
+}
+
+.verBtn:hover{
+background:#34c759;
+}
+.appHeader{
+font-size:20px;
+font-weight:600;
+margin-bottom:15px;
+text-align:center;
+}
+@keyframes fade{
+from{opacity:0;transform:translateX(10px)}
+to{opacity:1}
+}
+/* ===== VERSION POPUP ===== */
+
+.versionPopup{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.7);
+backdrop-filter:blur(20px);
+display:flex;
+align-items:center;
+justify-content:center;
+z-index:9999;
+}
+
+.versionBox{
+width:260px;
+background:#0a0a0a;
+border-radius:18px;
+padding:20px;
+text-align:center;
+box-shadow:0 0 25px #ff0055;
+}
+
+.verBtn{
+margin-top:10px;
+padding:12px;
+border-radius:10px;
+background:#111;
+cursor:pointer;
+transition:.25s;
+}
+
+.verBtn:hover{
+background:#ff0055;
+}
+/* VIP HEADER */
+
+.vipHeader{
+font-size:15px;
+font-weight:bold;
+padding:8px;
+margin-bottom:10px;
+border-radius:8px;
+text-align:center;
+
+background:linear-gradient(90deg,#ff0055,#ff7a00,#ff0055);
+background-size:200%;
+
+animation:vipMove 4s linear infinite;
+}
+
+@keyframes vipMove{
+0%{background-position:0%}
+100%{background-position:200%}
+}
+
+/* SWITCH */
+
+.switch{
+position:relative;
+display:inline-block;
+width:46px;
+height:24px;
+}
+
+.switch input{
+opacity:0;
+width:0;
+height:0;
+}
+
+.slider{
+position:absolute;
+cursor:pointer;
+top:0;
+left:0;
+right:0;
+bottom:0;
+
+background:#444;
+border-radius:34px;
+
+transition:.3s;
+}
+
+.slider:before{
+position:absolute;
+content:"";
+height:18px;
+width:18px;
+left:3px;
+bottom:3px;
+background:white;
+border-radius:50%;
+transition:.3s;
+}
+
+input:checked + .slider{
+background:linear-gradient(45deg,#00ff95,#00c3ff);
+box-shadow:0 0 8px #00ff95;
+}
+
+input:checked + .slider:before{
+transform:translateX(22px);
+}
+
+/* ROW */
+
+.row{
+display:flex;
+align-items:center;
+justify-content:space-between;
+margin:12px 0;
+}
+
+/* CONTACT */
+
+.contactBox{
+margin-top:15px;
+display:flex;
+gap:15px;
+}
+.contact{
+display:flex;
+gap:12px;
+margin-top:18px;
+}
+
+.contact a{
+width:42px;
+height:42px;
+border-radius:12px;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+font-size:20px;
+color:white;
+text-decoration:none;
+
+background:rgba(255,255,255,0.06);
+backdrop-filter:blur(10px);
+
+transition:.25s;
+}
+
+/* hover */
+.contact a:hover{
+transform:translateY(-3px) scale(1.1);
+box-shadow:0 0 15px rgba(255,0,85,.7);
+}
+.contact a{
+box-shadow:
+inset 0 1px 2px rgba(255,255,255,.2),
+0 4px 10px rgba(0,0,0,.4);
+}
+.contact img{
+width:22px;
+height:22px;
+pointer-events:none;
+}
+.tab i{
+font-size:18px;
+}
+/* màu app thật */
+.zalo{background:#0068ff;}
+.fb{background:#1877f2;}
+.phone{background:#19c37d;}
+
+/* FLOAT BUTTON */
+
+.floatBtn{
+width:50px;
+height:50px;
+border-radius:18px;
+}
+
+.floatBtn:hover{
+transform:scale(1.15);
+}/* ===== BODY ===== */
+/* ===== HOME PROFILE ===== */
+
+.homeProfile{
+display:flex;
+align-items:center;
+gap:12px;
+
+background:rgba(255,255,255,0.05);
+padding:12px;
+border-radius:14px;
+
+margin-bottom:15px;
+}
+
+/* avatar */
+
+.homeAvatar{
+width:55px;
+height:55px;
+
+border-radius:50%;
+
+object-fit:cover;
+
+box-shadow:0 0 10px rgba(0,255,150,.6);
+}
+
+/* name */
+
+.homeName{
+font-size:16px;
+font-weight:600;
+}
+
+/* status */
+
+.homeStatus{
+font-size:13px;
+color:#aaa;
+
+display:flex;
+align-items:center;
+gap:6px;
+}
+
+/* dot */
+
+.statusDot{
+width:8px;
+height:8px;
+
+background:#00ff95;
+
+border-radius:50%;
+
+box-shadow:0 0 6px #00ff95;
+}
+/* ===== OPTIMIZE BOX ===== */
+
+.optimizeBox{
+position:fixed;
+
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+
+width:340px;
+height:180px;
+
+background:rgba(0,0,0,.9);
+
+border-radius:14px;
+
+box-shadow:0 0 20px rgba(0,255,150,.5);
+
+font-family:monospace;
+font-size:12px;
+
+padding:10px;
+
+z-index:9999;
+
+animation:fade .3s;
+}
+.optimizer{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.65);
+backdrop-filter:blur(25px);
+display:flex;
+align-items:center;
+justify-content:center;
+z-index:9999;
+pointer-events:auto;
+}
+
+.optimizer[style*="display: none"],
+.optimizer[v-cloak]{
+pointer-events:none;
+}
+[v-cloak]{
+display:none;
+}
+.optTitle{
+text-align:center;
+font-weight:bold;
+margin-bottom:8px;
+color:#00ff95;
+}
+
+.optConsole{
+height:130px;
+overflow:hidden;
+color:#00ff95;
+}
+body{
+margin:0;
+
+background:linear-gradient(
+135deg,
+#050505,
+#0b0b0b,
+#141414,
+#0b0b0b
+);
+
+background-size:400% 400%;
+animation:bgMove 12s ease infinite;
+
+font-family:Arial;
+color:white;
+overflow:hidden;
+}
+
+/* nền chuyển động */
+
+@keyframes bgMove{
+0%{background-position:0% 50%}
+50%{background-position:100% 50%}
+100%{background-position:0% 50%}
+}
+
+/* nền chuyển động */
+@keyframes bgMove{
+0%{background-position:0% 50%}
+50%{background-position:100% 50%}
+100%{background-position:0% 50%}
+}
+
+/* ===== MENU BOX ===== */
+
+.menu{
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+width:430px;
+height:300px;
+
+backdrop-filter:blur(15px);
+background:rgba(20,20,20,0.65);
+
+border-radius:14px;
+
+animation:rgb 6s infinite;
+
+display:flex;
+overflow:hidden;
+}
+
+/* ===== SIDEBAR ===== */
+
+.sidebar{
+width:85px;
+background:rgba(0,0,0,0.6);
+display:flex;
+flex-direction:column;
+align-items:center;
+padding-top:12px;
+border-right:1px solid #333;
+}
+
+.tab{
+width:65px;
+height:45px;
+margin:6px;
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:10px;
+background:#111;
+cursor:pointer;
+font-size:20px;
+transition:.25s;
+}
+
+.tab:hover{
+transform:scale(1.1);
+background:#222;
+}
+
+.active{
+background:#ff0055;
+box-shadow:0 0 8px #ff0055;
+}
+
+/* ===== CONTENT ===== */
+
+.content{
+flex:1;
+padding:15px;
+animation:fade .25s;
+}
+
+@keyframes fade{
+from{opacity:0;transform:translateX(10px)}
+to{opacity:1}
+}
+
+/* ===== IOS SWITCH ===== */
+
+.switch{
+position:relative;
+display:inline-block;
+width:46px;
+height:24px;
+margin-left:10px;
+}
+
+.switch input{
+opacity:0;
+width:0;
+height:0;
+}
+
+.slider{
+position:absolute;
+cursor:pointer;
+top:0;
+left:0;
+right:0;
+bottom:0;
+background:#555;
+transition:.3s;
+border-radius:34px;
+}
+
+.slider:before{
+position:absolute;
+content:"";
+height:18px;
+width:18px;
+left:3px;
+bottom:3px;
+background:white;
+transition:.3s;
+border-radius:50%;
+}
+
+input:checked + .slider{
+background:#00ff95;
+}
+
+input:checked + .slider:before{
+transform:translateX(22px);
+}
+
+/* ===== OPTION ROW ===== */
+
+.row{
+display:flex;
+align-items:center;
+justify-content:space-between;
+margin:12px 0;
+font-size:14px;
+}
+
+/* ===== FLOAT BUTTON ===== */
+
+.floatBtn{
+position:fixed;
+right:20px;
+bottom:20px;
+width:45px;
+height:45px;
+border-radius:50%;
+background:#ff0055;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:22px;
+cursor:pointer;
+box-shadow:0 0 12px #ff0055;
+}
+/* ===== VERSION POPUP ===== */
+
+.versionPopup{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.7);
+backdrop-filter:blur(20px);
+display:flex;
+align-items:center;
+justify-content:center;
+z-index:9999;
+}
+
+.versionBox{
+width:260px;
+background:#0a0a0a;
+border-radius:16px;
+padding:18px;
+text-align:center;
+box-shadow:0 0 25px #ff0055;
+}
+
+.verBtn{
+margin-top:10px;
+padding:10px;
+background:#111;
+border-radius:10px;
+cursor:pointer;
+transition:.25s;
+}
+
+.verBtn:hover{
+background:#ff0055;
+}
+
+.verBtn.cancel{
+background:#ff0055;
+}/* VERSION POPUP */
+
+.versionPopup{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.7);
+backdrop-filter:blur(20px);
+display:flex;
+align-items:center;
+justify-content:center;
+z-index:9999;
+}
+
+.versionBox{
+width:260px;
+background:#0a0a0a;
+border-radius:16px;
+padding:20px;
+text-align:center;
+}
+
+.verBtn{
+margin-top:10px;
+padding:10px;
+background:#111;
+border-radius:10px;
+cursor:pointer;
+}openVersion(){
+this.versionSelect = true
+},
+
+selectVersion(v){
+
+this.versionSelect = false
+
+this.notify("FastTop iOS ("+v+")",true)
+
+}/* ===== START FILES ===== */
+
+.startBox{
+display:flex;
+justify-content:center;
+gap:12px;
+margin-top:10px;
+}
+
+.startBtn{
+padding:10px 28px;
+border-radius:10px;
+cursor:pointer;
+font-weight:bold;
+transition:.25s;
+}
+
+.startBtn.on{
+background:#34c759;
+box-shadow:0 0 10px #34c759;
+}
+
+.startBtn.off{
+background:#ff3b30;
+box-shadow:0 0 10px #ff3b30;
+}
+
+.startBtn:active{
+transform:scale(.9);
+}
+
+/* VERSION SELECT */
+
+.versionPopup{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.6);
+display:flex;
+align-items:center;
+justify-content:center;
+z-index:99999;
+}
+
+.versionBox{
+width:260px;
+background:#0b0b0b;
+border-radius:18px;
+padding:18px;
+text-align:center;
+box-shadow:0 0 25px #ff0055;
+}
+
+.verBtn{
+margin-top:10px;
+padding:10px;
+border-radius:10px;
+background:#111;
+cursor:pointer;
+transition:.25s;
+}
+
+.verBtn:hover{
+background:#ff0055;
+transform:scale(1.05);
+}
+/* ===== SENS SLIDER ===== */
+.keyBox{
+margin:6px 0;
+padding:7px;
+background:rgba(255,255,255,0.03);
+border-radius:10px;
+backdrop-filter:blur(5px);
+border:1px solid rgba(255,255,255,0.05);
+}
+
+/* INPUT */
+
+.keyBox input{
+width:100%;
+padding:7px;
+border:none;
+outline:none;
+border-radius:6px;
+background:#1c1c1e;
+color:white;
+font-size:12px;
+text-align:center;
+margin-bottom:5px;
+}
+
+/* BUTTON */
+
+.keyBox button{
+width:100%;
+padding:7px;
+border:none;
+border-radius:6px;
+background:linear-gradient(90deg,#ff0055,#ff3b3b);
+color:white;
+font-weight:600;
+font-size:12px;
+cursor:pointer;
+}
+
+/* TEXT */
+
+.buyKey{
+margin-top:3px;
+font-size:11px;
+color:#aaa;
+text-align:center;
+}
+
+.keyBox p{
+font-size:11px;
+margin-top:3px;
+text-align:center;
+}
+.keyToast{
+position:fixed;
+top:20px;
+left:50%;
+transform:translateX(-50%) translateY(-30px);
+
+background:rgba(0,0,0,.8);
+backdrop-filter:blur(12px);
+
+padding:10px 18px;
+border-radius:12px;
+
+font-size:14px;
+color:#00ff95;
+
+box-shadow:0 0 12px #00ff95;
+
+opacity:0;
+transition:.35s;
+
+z-index:99999;
+}
+
+.keyToast.show{
+opacity:1;
+transform:translateX(-50%) translateY(0);
+}
+.sensSlider{
+width:100%;
+height:6px;
+border-radius:10px;
+background:#222;
+outline:none;
+-webkit-appearance:none;
+}
+
+.sensSlider::-webkit-slider-thumb{
+-webkit-appearance:none;
+width:18px;
+height:18px;
+border-radius:50%;
+background:#34c759;
+box-shadow:0 0 8px #34c759;
+cursor:pointer;
+}
+.contactBar{
+position:absolute;
+bottom:10px;
+left:0;
+width:100%;
+display:flex;
+justify-content:center;
+gap:15px;
+}
+
+.contactBar a{
+width:36px;
+height:36px;
+border-radius:10px;
+display:flex;
+align-items:center;
+justify-content:center;
+background:#111;
+color:white;
+font-size:16px;
+text-decoration:none;
+transition:.25s;
+}
+
+.contactBar a:hover{
+transform:scale(1.15);
+background:#ff0055;
+}
+  </style>
+
+  
+</head>
+<body>
+  <!DOCTYPE html>
+<html>
+
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VIP MOD MENU</title>
+
+  <style>
+    /* ===== CONTACT ICON ===== */
+
+.contactBox{
+margin-top:15px;
+display:flex;
+gap:15px;
+}
+<!-- INFO -->
+<div v-if="tab==='info'" class="slide">
+
+<h3>Contact</h3>
+<p class="build">Build by FASTOP IOS</p>
+
+<div class="contactRow">
+<img class="iconImg"
+src="https://upload.wikimedia.org/wikipedia/commons/9/91/Icon_of_Zalo.svg">
+<div>
+<div class="title">Zalo</div>
+<div class="sub">Chat hỗ trợ nhanh</div>
+</div>
+<a href="https://zalo.me/0396134792" target="_blank" class="open">Open</a>
+</div>
+
+<div class="contactRow">
+<i class="fa-brands fa-facebook-f icon fb"></i>
+<div>
+<div class="title">Facebook</div>
+<div class="sub">Trang chính thức</div>
+</div>
+<a href="https://facebook.com" target="_blank" class="open">Open</a>
+</div>
+
+<div class="contactRow">
+<i class="fa-solid fa-phone icon phone"></i>
+<div>
+<div class="title">Phone</div>
+<div class="sub">0396 134 792</div>
+</div>
+<a href="tel:0396134792" class="open">Call</a>
+</div>
+<div v-if="tab==='info'">
+
+<div class="profile">
+
+<img class="avatar"
+src="https://i.imgur.com/3ZQ3Z6K.png">
+.icon{
+width:24px;
+height:24px;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+border-radius:6px;
+
+color:white;
+font-size:13px;
+
+box-shadow:
+inset 0 1px 2px rgba(255,255,255,.25),
+0 2px 4px rgba(0,0,0,.4);
+}
+
+/* Facebook giống iOS */
+
+.fb{
+background:#1877f2;
+}
+.icon:active{
+transform:scale(.9);
+transition:.1s;
+}
+
+/* Phone giống iOS */
+
+.phone{
+background:#34c759;
+}
+<div class="profileText">
+<div class="name">FASTOP IOS</div>
+<div class="status">
+<span class="dot"></span> ONLINE
+</div>
+</div>
+
+</div>
+
+<div class="contactRow ripple"
+onclick="haptic()">
+
+<img class="iconImg"
+src="https://upload.wikimedia.org/wikipedia/commons/9/91/Icon_of_Zalo.svg">
+
+<span>Zalo</span>
+
+<a href="https://zalo.me/0396134792" target="_blank">Open</a>
+
+</div>
+
+
+<div class="contactRow ripple"
+onclick="haptic()">
+
+<i class="fa-brands fa-facebook-f icon fb"></i>
+
+<span>Facebook</span>
+
+<a href="https://facebook.com/cducdz" target="_blank">Open</a>
+
+</div>
+
+
+<div class="contactRow ripple"
+onclick="haptic()">
+
+<i class="fa-solid fa-phone icon phone"></i>
+
+<span>Call</span>
+
+<a href="tel:0396134792">Call</a>
+
+</div>
+
+</div>
+</div>
+.contactIcon{
+width:42px;
+height:42px;
+border-radius:10px;
+display:flex;
+align-items:center;
+justify-content:center;
+background:#111;
+cursor:pointer;
+transition:0.25s;
+font-size:20px;
+}
+
+.contactIcon:hover{
+transform:scale(1.15);
+box-shadow:0 0 10px #ff0055;
+}
+
+.fb{color:#1877f2;}
+.zalo{color:#00b7ff;}
+.phone{color:#00ff95;}
+
+/* ===== BODY ===== */
+
+body{
+margin:0;
+background:#0b0b0b;
+font-family:Arial;
+color:white;
+overflow:hidden;
+}
+
+/* ===== RGB BORDER ===== */
+
+@keyframes rgb{
+0%{box-shadow:0 0 10px red}
+25%{box-shadow:0 0 10px orange}
+50%{box-shadow:0 0 10px cyan}
+75%{box-shadow:0 0 10px purple}
+100%{box-shadow:0 0 10px red}
+}
+body::before{
+content:"";
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+
+background:radial-gradient(
+circle at center,
+rgba(255,0,85,0.08),
+transparent 70%
+);
+
+pointer-events:none;
+animation:pulse 6s infinite;
+}
+
+@keyframes pulse{
+0%,100%{opacity:.4}
+50%{opacity:.9}
+}
+/* ===== MENU BOX ===== */
+
+.menu{
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+
+width:90%;
+max-width:360px;
+
+height:68vh;
+max-height:380px;
+
+backdrop-filter:blur(18px);
+background:rgba(20,20,20,.65);
+border-radius:16px;
+
+display:flex;
+overflow:hidden;
+}
+
+/* ===== SIDEBAR ===== */
+
+.sidebar{
+width:120px;
+background:rgba(0,0,0,0.6);
+
+display:flex;
+flex-direction:column;
+align-items:center;
+
+padding-top:15px;
+
+border-right:1px solid #333;
+}
+
+.tab{
+width:85px;
+height:55px;
+
+margin:8px;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+border-radius:12px;
+
+background:#111;
+
+cursor:pointer;
+
+font-size:24px;
+
+transition:.25s;
+}
+
+.tab:hover{
+transform:scale(1.1);
+background:#222;
+}
+
+.active{
+background:#ff0055;
+box-shadow:0 0 8px #ff0055;
+}
+
+/* ===== CONTENT ===== */
+
+.content{
+flex:1;
+padding:25px;
+font-size:16px;
+}
+
+@keyframes fade{
+from{opacity:0;transform:translateX(10px)}
+to{opacity:1}
+}
+
+/* ===== IOS SWITCH ===== */
+
+.switch{
+position:relative;
+display:inline-block;
+width:50px;
+height:28px;
+}
+
+.switch input{
+opacity:0;
+width:0;
+height:0;
+}
+
+.slider{
+position:absolute;
+cursor:pointer;
+top:0;
+left:0;
+right:0;
+bottom:0;
+background:#3a3a3c;
+border-radius:34px;
+transition:.35s;
+}
+
+.slider:before{
+position:absolute;
+content:"";
+height:24px;
+width:24px;
+left:2px;
+top:2px;
+background:white;
+border-radius:50%;
+transition:.35s;
+box-shadow:0 2px 6px rgba(0,0,0,.4);
+}
+
+input:checked + .slider{
+background:#34c759;
+}
+
+input:checked + .slider:before{
+transform:translateX(22px);
+}
+@keyframes islandOpen{
+0%{
+transform:translate(-50%,-20%) scale(.2);
+opacity:0;
+}
+
+100%{
+transform:translate(-50%,-50%) scale(1);
+opacity:1;
+}
+}
+
+.menu{
+animation:islandOpen .35s ease;
+}
+
+
+/* ===== OPTION ROW ===== */
+
+.row{
+display:flex;
+align-items:center;
+justify-content:space-between;
+margin:12px 0;
+font-size:14px;
+}
+
+/* ===== FLOAT BUTTON ===== */
+
+.floatBtn{
+  .floatBtn{
+transition:.3s;
+}
+
+.floatBtn:hover{
+transform:scale(1.15) rotate(90deg);
+box-shadow:0 0 20px #ff0055;
+}
+position:fixed;
+right:20px;
+bottom:20px;
+width:45px;
+height:45px;
+border-radius:50%;
+background:#ff0055;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:22px;
+cursor:pointer;
+box-shadow:0 0 12px #ff0055;
+}body{
+margin:0;
+background:#0b0b0b;
+font-family:Arial;
+color:white;
+}
+body::before{
+content:"";
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+
+background:
+radial-gradient(circle at 30% 30%, rgba(255,0,120,0.15), transparent 40%),
+radial-gradient(circle at 70% 60%, rgba(0,200,255,0.15), transparent 40%);
+
+animation:lightMove 10s infinite alternate;
+
+pointer-events:none;
+}
+
+@keyframes lightMove{
+0%{transform:translateY(-20px)}
+100%{transform:translateY(20px)}
+}
+/* RGB BORDER */
+let menu=document.querySelector(".menu")
+
+let isDown=false
+let offset=[0,0]
+
+menu.addEventListener("mousedown",e=>{
+isDown=true
+offset=[
+menu.offsetLeft-e.clientX,
+menu.offsetTop-e.clientY
+]
+})
+
+document.addEventListener("mouseup",()=>isDown=false)
+
+document.addEventListener("mousemove",e=>{
+if(isDown){
+menu.style.left=e.clientX+offset[0]+"px"
+menu.style.top=e.clientY+offset[1]+"px"
+menu.style.transform="none"
+}
+})
+@keyframes rgb{
+0%{box-shadow:0 0 12px red}
+25%{box-shadow:0 0 12px orange}
+50%{box-shadow:0 0 12px cyan}
+75%{box-shadow:0 0 12px purple}
+100%{box-shadow:0 0 12px red}
+}
+.toast{
+position:fixed;
+top:20px;
+left:50%;
+transform:translateX(-50%);
+
+background:rgba(0,0,0,0.8);
+backdrop-filter:blur(10px);
+
+padding:10px 18px;
+border-radius:10px;
+
+font-size:14px;
+color:#fff;
+
+box-shadow:0 0 10px rgba(0,255,150,.6);
+
+animation:toastIn .3s;
+z-index:999;
+}
+
+@keyframes toastIn{
+from{
+opacity:0;
+transform:translate(-50%,-20px);
+}
+to{
+opacity:1;
+transform:translate(-50%,0);
+}
+}
+
+
+
+/* MENU */
+.toast{
+position:fixed;
+top:20px;
+right:20px;
+
+padding:12px 18px;
+
+border-radius:12px;
+
+display:flex;
+align-items:center;
+gap:8px;
+
+font-size:14px;
+
+backdrop-filter:blur(12px);
+
+animation:toastSlide .35s;
+
+z-index:999;
+}
+<div v-if="tab==='home'">
+
+<div class="homeProfile">
+
+<img class="homeAvatar"
+src="https://i.imgur.com/3ZQ3Z6K.png">
+
+<div class="homeInfo">
+
+<div class="homeName">FASTOP IOS</div>
+
+<div class="homeStatus">
+<span class="statusDot"></span>
+ONLINE
+</div>
+
+/* bật */
+
+.toast.on{
+background:rgba(0,200,120,0.2);
+border:1px solid #00ff95;
+box-shadow:0 0 12px #00ff95;
+}
+<div class="batteryBox">
+  <div class="batteryIcon">
+      <div id="batteryFill"></div>
+      <div id="batteryBolt">⚡</div>
+  </div>
+  <span id="batteryText">--%</span>
+</div>
+/* tắt */
+
+.toast.off{
+background:rgba(255,0,80,0.2);
+border:1px solid #ff0055;
+box-shadow:0 0 12px #ff0055;
+}
+
+.toastIcon{
+font-weight:bold;
+font-size:16px;
+}
+<div class="versionPopup" v-if="versionSelect">
+
+<div class="versionBox">
+
+<h3>Chọn phiên bản</h3>
+
+<div class="verBtn"
+@click="selectVersion('Free Fire')">
+Free Fire
+</div>
+
+<div class="verBtn"
+@click="selectVersion('Free Fire MAX')">
+Free Fire MAX
+</div>
+
+</div>
+
+</div>
+
+/* animation */
+
+@keyframes toastSlide{
+
+from{
+opacity:0;
+transform:translateX(60px);
+}
+
+to{
+opacity:1;
+transform:translateX(0);
+}
+.toastWrap{
+position:fixed;
+top:20px;
+right:20px;
+
+display:flex;
+flex-direction:column;
+gap:10px;
+
+z-index:999;
+}
+
+/* từng thông báo */
+
+.toast{
+min-width:200px;
+padding:12px 18px;
+
+border-radius:12px;
+
+display:flex;
+align-items:center;
+gap:8px;
+
+font-size:14px;
+
+backdrop-filter:blur(12px);
+
+animation:toastSlide .35s;
+}
+
+/* bật */
+
+.toast.on{
+background:rgba(0,200,120,0.2);
+border:1px solid #00ff95;
+box-shadow:0 0 12px #00ff95;
+}
+
+/* tắt */
+
+.toast.off{
+background:rgba(255,0,80,0.2);
+border:1px solid #ff0055;
+box-shadow:0 0 12px #ff0055;
+}
+
+.toastIcon{
+font-weight:bold;
+}
+
+/* animation */
+
+@keyframes toastSlide{
+from{
+opacity:0;
+transform:translateX(70px);
+}
+to{
+opacity:1;
+transform:translateX(0);
+}
+}
+}
+.menu{
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+
+/* TỶ LỆ APP DỌC */
+width:380px;
+height:720px;
+
+backdrop-filter:blur(25px) saturate(180%);
+-webkit-backdrop-filter:blur(25px) saturate(180%);
+
+background:rgba(25,25,25,0.55);
+
+border-radius:32px; /* giống iPhone */
+
+border:1px solid rgba(255,255,255,0.08);
+
+display:flex;
+overflow:hidden;
+}
+.toast{
+transition:.25s;
+}
+.toast{
+transition:all .35s ease;
+}
+
+.toast.leave{
+opacity:0;
+transform:translateX(60px) translateY(-10px);
+}
+
+/* SIDEBAR */
+
+.sidebar{
+width:80px;
+background:rgba(0,0,0,0.55);
+
+display:flex;
+flex-direction:column;
+align-items:center;
+
+padding-top:20px;
+
+border-right:1px solid rgba(255,255,255,.08);
+}
+
+/* TAB */
+
+.tab{
+width:56px;
+height:56px;
+
+margin:10px 0;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+border-radius:16px;
+
+background:rgba(255,255,255,0.06);
+
+font-size:22px;
+
+transition:.25s;
+}
+
+.tab:active{
+transform:scale(.9);
+}
+
+.tab:hover{
+transform:scale(1.1);
+background:#222;
+}
+
+.active{
+background:#ff0055;
+box-shadow:0 0 10px #ff0055;
+}
+
+/* CONTENT */
+.content{
+flex:1;
+padding:20px;
+overflow-y:auto;
+}
+/* STARTING FILES */
+
+.startBox{
+display:flex;
+margin-top:10px;
+border-radius:8px;
+overflow:hidden;
+}
+
+.startBtn{
+flex:1;
+padding:12px;
+text-align:center;
+font-weight:bold;
+cursor:pointer;
+}
+
+.startBtn.on{
+background:#555;
+}
+
+.startBtn.off{
+background:#ff2a2a;
+}
+
+/* VERSION POPUP */
+
+.versionPopup{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.6);
+display:flex;
+align-items:center;
+justify-content:center;
+z-index:9999;
+}
+
+.versionBox{
+background:#111;
+padding:20px;
+border-radius:14px;
+width:240px;
+text-align:center;
+}
+
+.verBtn{
+margin-top:10px;
+padding:10px;
+background:#222;
+border-radius:8px;
+cursor:pointer;
+}
+
+.verBtn:hover{
+background:#34c759;
+}
+.appHeader{
+font-size:20px;
+font-weight:600;
+margin-bottom:15px;
+text-align:center;
+}
+@keyframes fade{
+from{opacity:0;transform:translateX(10px)}
+to{opacity:1}
+}
+/* ===== VERSION POPUP ===== */
+
+.versionPopup{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.7);
+backdrop-filter:blur(20px);
+display:flex;
+align-items:center;
+justify-content:center;
+z-index:9999;
+}
+
+.versionBox{
+width:260px;
+background:#0a0a0a;
+border-radius:18px;
+padding:20px;
+text-align:center;
+box-shadow:0 0 25px #ff0055;
+}
+
+.verBtn{
+margin-top:10px;
+padding:12px;
+border-radius:10px;
+background:#111;
+cursor:pointer;
+transition:.25s;
+}
+
+.verBtn:hover{
+background:#ff0055;
+}
+/* VIP HEADER */
+
+.vipHeader{
+font-size:15px;
+font-weight:bold;
+padding:8px;
+margin-bottom:10px;
+border-radius:8px;
+text-align:center;
+
+background:linear-gradient(90deg,#ff0055,#ff7a00,#ff0055);
+background-size:200%;
+
+animation:vipMove 4s linear infinite;
+}
+
+@keyframes vipMove{
+0%{background-position:0%}
+100%{background-position:200%}
+}
+
+/* SWITCH */
+
+.switch{
+position:relative;
+display:inline-block;
+width:46px;
+height:24px;
+}
+
+.switch input{
+opacity:0;
+width:0;
+height:0;
+}
+
+.slider{
+position:absolute;
+cursor:pointer;
+top:0;
+left:0;
+right:0;
+bottom:0;
+
+background:#444;
+border-radius:34px;
+
+transition:.3s;
+}
+
+.slider:before{
+position:absolute;
+content:"";
+height:18px;
+width:18px;
+left:3px;
+bottom:3px;
+background:white;
+border-radius:50%;
+transition:.3s;
+}
+
+input:checked + .slider{
+background:linear-gradient(45deg,#00ff95,#00c3ff);
+box-shadow:0 0 8px #00ff95;
+}
+
+input:checked + .slider:before{
+transform:translateX(22px);
+}
+
+/* ROW */
+
+.row{
+display:flex;
+align-items:center;
+justify-content:space-between;
+margin:12px 0;
+}
+
+/* CONTACT */
+
+.contactBox{
+margin-top:15px;
+display:flex;
+gap:15px;
+}
+.contact{
+display:flex;
+gap:12px;
+margin-top:18px;
+}
+
+.contact a{
+width:42px;
+height:42px;
+border-radius:12px;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+font-size:20px;
+color:white;
+text-decoration:none;
+
+background:rgba(255,255,255,0.06);
+backdrop-filter:blur(10px);
+
+transition:.25s;
+}
+
+/* hover */
+.contact a:hover{
+transform:translateY(-3px) scale(1.1);
+box-shadow:0 0 15px rgba(255,0,85,.7);
+}
+.contact a{
+box-shadow:
+inset 0 1px 2px rgba(255,255,255,.2),
+0 4px 10px rgba(0,0,0,.4);
+}
+.contact img{
+width:22px;
+height:22px;
+pointer-events:none;
+}
+.tab i{
+font-size:18px;
+}
+/* màu app thật */
+.zalo{background:#0068ff;}
+.fb{background:#1877f2;}
+.phone{background:#19c37d;}
+
+/* FLOAT BUTTON */
+
+.floatBtn{
+width:50px;
+height:50px;
+border-radius:18px;
+}
+
+.floatBtn:hover{
+transform:scale(1.15);
+}/* ===== BODY ===== */
+/* ===== HOME PROFILE ===== */
+
+.homeProfile{
+display:flex;
+align-items:center;
+gap:12px;
+
+background:rgba(255,255,255,0.05);
+padding:12px;
+border-radius:14px;
+
+margin-bottom:15px;
+}
+
+/* avatar */
+
+.homeAvatar{
+width:55px;
+height:55px;
+
+border-radius:50%;
+
+object-fit:cover;
+
+box-shadow:0 0 10px rgba(0,255,150,.6);
+}
+
+/* name */
+
+.homeName{
+font-size:16px;
+font-weight:600;
+}
+
+/* status */
+
+.homeStatus{
+font-size:13px;
+color:#aaa;
+
+display:flex;
+align-items:center;
+gap:6px;
+}
+
+/* dot */
+
+.statusDot{
+width:8px;
+height:8px;
+
+background:#00ff95;
+
+border-radius:50%;
+
+box-shadow:0 0 6px #00ff95;
+}
+/* ===== OPTIMIZE BOX ===== */
+
+.optimizeBox{
+position:fixed;
+
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+
+width:340px;
+height:180px;
+
+background:rgba(0,0,0,.9);
+
+border-radius:14px;
+
+box-shadow:0 0 20px rgba(0,255,150,.5);
+
+font-family:monospace;
+font-size:12px;
+
+padding:10px;
+
+z-index:9999;
+
+animation:fade .3s;
+}
+.optimizer{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.65);
+backdrop-filter:blur(25px);
+display:flex;
+align-items:center;
+justify-content:center;
+z-index:9999;
+pointer-events:auto;
+}
+
+.optimizer[style*="display: none"],
+.optimizer[v-cloak]{
+pointer-events:none;
+}
+[v-cloak]{
+display:none;
+}
+.optTitle{
+text-align:center;
+font-weight:bold;
+margin-bottom:8px;
+color:#00ff95;
+}
+
+.optConsole{
+height:130px;
+overflow:hidden;
+color:#00ff95;
+}
+body{
+margin:0;
+
+background:linear-gradient(
+135deg,
+#050505,
+#0b0b0b,
+#141414,
+#0b0b0b
+);
+
+background-size:400% 400%;
+animation:bgMove 12s ease infinite;
+
+font-family:Arial;
+color:white;
+overflow:hidden;
+}
+
+/* nền chuyển động */
+
+@keyframes bgMove{
+0%{background-position:0% 50%}
+50%{background-position:100% 50%}
+100%{background-position:0% 50%}
+}
+
+/* nền chuyển động */
+@keyframes bgMove{
+0%{background-position:0% 50%}
+50%{background-position:100% 50%}
+100%{background-position:0% 50%}
+}
+
+/* ===== MENU BOX ===== */
+
+.menu{
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+width:430px;
+height:300px;
+
+backdrop-filter:blur(15px);
+background:rgba(20,20,20,0.65);
+
+border-radius:14px;
+
+animation:rgb 6s infinite;
+
+display:flex;
+overflow:hidden;
+}
+
+/* ===== SIDEBAR ===== */
+
+.sidebar{
+width:85px;
+background:rgba(0,0,0,0.6);
+display:flex;
+flex-direction:column;
+align-items:center;
+padding-top:12px;
+border-right:1px solid #333;
+}
+
+.tab{
+width:65px;
+height:45px;
+margin:6px;
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:10px;
+background:#111;
+cursor:pointer;
+font-size:20px;
+transition:.25s;
+}
+
+.tab:hover{
+transform:scale(1.1);
+background:#222;
+}
+
+.active{
+background:#ff0055;
+box-shadow:0 0 8px #ff0055;
+}
+
+/* ===== CONTENT ===== */
+
+.content{
+flex:1;
+padding:15px;
+animation:fade .25s;
+}
+
+@keyframes fade{
+from{opacity:0;transform:translateX(10px)}
+to{opacity:1}
+}
+
+/* ===== IOS SWITCH ===== */
+
+.switch{
+position:relative;
+display:inline-block;
+width:46px;
+height:24px;
+margin-left:10px;
+}
+
+.switch input{
+opacity:0;
+width:0;
+height:0;
+}
+
+.slider{
+position:absolute;
+cursor:pointer;
+top:0;
+left:0;
+right:0;
+bottom:0;
+background:#555;
+transition:.3s;
+border-radius:34px;
+}
+
+.slider:before{
+position:absolute;
+content:"";
+height:18px;
+width:18px;
+left:3px;
+bottom:3px;
+background:white;
+transition:.3s;
+border-radius:50%;
+}
+
+input:checked + .slider{
+background:#00ff95;
+}
+
+input:checked + .slider:before{
+transform:translateX(22px);
+}
+
+/* ===== OPTION ROW ===== */
+
+.row{
+display:flex;
+align-items:center;
+justify-content:space-between;
+margin:12px 0;
+font-size:14px;
+}
+
+/* ===== FLOAT BUTTON ===== */
+
+.floatBtn{
+position:fixed;
+right:20px;
+bottom:20px;
+width:45px;
+height:45px;
+border-radius:50%;
+background:#ff0055;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:22px;
+cursor:pointer;
+box-shadow:0 0 12px #ff0055;
+}
+/* ===== VERSION POPUP ===== */
+
+.versionPopup{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.7);
+backdrop-filter:blur(20px);
+display:flex;
+align-items:center;
+justify-content:center;
+z-index:9999;
+}
+
+.versionBox{
+width:260px;
+background:#0a0a0a;
+border-radius:16px;
+padding:18px;
+text-align:center;
+box-shadow:0 0 25px #ff0055;
+}
+
+.verBtn{
+margin-top:10px;
+padding:10px;
+background:#111;
+border-radius:10px;
+cursor:pointer;
+transition:.25s;
+}
+
+.verBtn:hover{
+background:#ff0055;
+}
+
+.verBtn.cancel{
+background:#ff0055;
+}/* VERSION POPUP */
+
+.versionPopup{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.7);
+backdrop-filter:blur(20px);
+display:flex;
+align-items:center;
+justify-content:center;
+z-index:9999;
+}
+
+.versionBox{
+width:260px;
+background:#0a0a0a;
+border-radius:16px;
+padding:20px;
+text-align:center;
+}
+
+.verBtn{
+margin-top:10px;
+padding:10px;
+background:#111;
+border-radius:10px;
+cursor:pointer;
+}openVersion(){
+this.versionSelect = true
+},
+
+selectVersion(v){
+
+this.versionSelect = false
+
+this.notify("FastTop iOS ("+v+")",true)
+
+}/* ===== START FILES ===== */
+
+.startBox{
+display:flex;
+justify-content:center;
+gap:12px;
+margin-top:10px;
+}
+
+.startBtn{
+padding:10px 28px;
+border-radius:10px;
+cursor:pointer;
+font-weight:bold;
+transition:.25s;
+}
+
+.startBtn.on{
+background:#34c759;
+box-shadow:0 0 10px #34c759;
+}
+
+.startBtn.off{
+background:#ff3b30;
+box-shadow:0 0 10px #ff3b30;
+}
+
+.startBtn:active{
+transform:scale(.9);
+}
+
+/* VERSION SELECT */
+
+.versionPopup{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.6);
+display:flex;
+align-items:center;
+justify-content:center;
+z-index:99999;
+}
+
+.versionBox{
+width:260px;
+background:#0b0b0b;
+border-radius:18px;
+padding:18px;
+text-align:center;
+box-shadow:0 0 25px #ff0055;
+}
+
+.verBtn{
+margin-top:10px;
+padding:10px;
+border-radius:10px;
+background:#111;
+cursor:pointer;
+transition:.25s;
+}
+
+.verBtn:hover{
+background:#ff0055;
+transform:scale(1.05);
+}
+/* ===== SENS SLIDER ===== */
+
+.sensSlider{
+width:100%;
+height:6px;
+border-radius:10px;
+background:#222;
+outline:none;
+-webkit-appearance:none;
+}
+
+.sensSlider::-webkit-slider-thumb{
+-webkit-appearance:none;
+width:18px;
+height:18px;
+border-radius:50%;
+background:#34c759;
+box-shadow:0 0 8px #34c759;
+cursor:pointer;
+}
+.contactBar{
+position:absolute;
+bottom:10px;
+left:0;
+width:100%;
+display:flex;
+justify-content:center;
+gap:15px;
+}
+
+.contactBar a{
+width:36px;
+height:36px;
+border-radius:10px;
+display:flex;
+align-items:center;
+justify-content:center;
+background:#111;
+color:white;
+font-size:16px;
+text-decoration:none;
+transition:.25s;
+}
+
+.contactBar a:hover{
+transform:scale(1.15);
+background:#ff0055;
+}@media (max-width:500px){
+
+.menu{
+width:94%;
+height:72vh;
+}
+
+.sidebar{
+width:70px;
+}
+
+.tab{
+width:55px;
+height:40px;
+}
+
+}@media (max-width:380px){
+
+.menu{
+width:92%;
+max-width:340px;
+height:66vh;
+}
+
+.sidebar{
+width:70px;
+}
+
+.tab{
+width:52px;
+height:38px;
+margin:5px;
+}
+
+}
+  </style>
+
+  
+</head>
+<script>
+
+const API_URL="https://script.google.com/macros/s/AKfycbwl3ofmxcsX1gKHwj5tkU4CluboOGDX2vuxiiexfkNrw73UeTFNUPpLPPmUnps8wUt0/exec";
+
+function checkKey(){
+
+const key =
+document.getElementById("keyInput").value.trim();
+
+if(!key){
+alert("Nhập key!");
+return;
+}
+
+fetch(API_URL + "?key=" + encodeURIComponent(key))
+.then(r=>r.json())
+.then(data=>{
+
+if(data.status==="success"){
+ localStorage.setItem("vip_key", key);
+
+document.getElementById("loginBox").style.display="none";
+document.getElementById("menu").style.display="flex";
+
+localStorage.setItem("vip_key",key);
+
+}else if(data.status==="expired"){
+alert("Key hết hạn");
+}else if(data.status==="full"){
+alert("Key đã đủ user");
+}else{
+alert("Key sai");
+}
+
+})
+.catch(()=>{
+alert("Không kết nối API");
+});
+
+}
+
+/* AUTO LOGIN */
+
+window.onload=function(){
+
+const saved=localStorage.getItem("vip_key");
+
+if(saved){
+document.getElementById("keyInput").value=saved;
+checkKey();
+}
+
+}
+
+</script>
+<body>
+  <div id="keyToast" class="keyToast"></div>
+  <!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>VIP MOD MENU</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+
+<style>
+
+/* ===== BODY ===== */
+
+body{
+margin:0;
+background:linear-gradient(135deg,#050505,#111,#050505);
+background-size:400% 400%;
+animation:bgMove 10s infinite;
+font-family:Arial;
+color:white;
+overflow:hidden;
+}
+
+@keyframes bgMove{
+0%{background-position:0% 50%}
+50%{background-position:100% 50%}
+100%{background-position:0% 50%}
+}
+
+/* ===== MENU ===== */
+
+.menu{
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+width:440px;
+height:320px;
+backdrop-filter:blur(18px);
+background:rgba(20,20,20,.65);
+border-radius:16px;
+display:flex;
+overflow:hidden;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+width:85px;
+background:rgba(0,0,0,.6);
+display:flex;
+flex-direction:column;
+align-items:center;
+padding-top:12px;
+border-right:1px solid #333;
+}
+
+.tab{
+width:65px;
+height:45px;
+margin:6px;
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:10px;
+background:#111;
+cursor:pointer;
+transition:.25s;
+}
+
+.tab:hover{transform:scale(1.1)}
+
+.active{
+background:#ff0055;
+box-shadow:0 0 8px #ff0055;
+}
+
+.content{
+flex:1;
+padding:15px;
+}
+
+/* SWITCH IOS */
+
+.switch{
+position:relative;
+display:inline-block;
+width:50px;
+height:28px;
+}
+.switch input{opacity:0}
+
+.slider{
+position:absolute;
+inset:0;
+background:#3a3a3c;
+border-radius:34px;
+transition:.3s;
+}
+
+.slider:before{
+content:"";
+position:absolute;
+height:24px;
+width:24px;
+left:2px;
+top:2px;
+background:white;
+border-radius:50%;
+transition:.3s;
+}
+
+input:checked + .slider{
+background:#34c759;
+}
+input:checked + .slider:before{
+transform:translateX(22px);
+}
+
+.row{
+display:flex;
+justify-content:space-between;
+margin:12px 0;
+}
+
+/* CONTACT */
+
+.contact{
+display:flex;
+gap:15px;
+margin-top:10px;
+}
+
+.contact a{
+width:40px;
+height:40px;
+border-radius:10px;
+display:flex;
+align-items:center;
+justify-content:center;
+background:#111;
+color:white;
+font-size:18px;
+text-decoration:none;
+}
+
+.contact img{
+width:22px;
+}
+
+/* FLOAT BTN */
+
+.floatBtn{
+position:fixed;
+right:20px;
+bottom:20px;
+width:45px;
+height:45px;
+border-radius:50%;
+background:#ff0055;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:22px;
+cursor:pointer;
+box-shadow:0 0 12px #ff0055;
+}
+
+/* ===== TOAST ===== */
+
+.toastWrap{
+position:fixed;
+top:20px;
+right:20px;
+display:flex;
+flex-direction:column;
+gap:10px;
+z-index:999;
+}
+
+.toast{
+padding:12px 18px;
+border-radius:12px;
+backdrop-filter:blur(10px);
+animation:slide .35s;
+}
+
+.toast.on{
+background:rgba(0,200,120,.2);
+border:1px solid #00ff95;
+}
+
+.toast.off{
+background:rgba(255,0,80,.2);
+border:1px solid #ff0055;
+}
+
+@keyframes slide{
+from{opacity:0;transform:translateX(60px)}
+to{opacity:1}
+}
+
+/* ===== OPTIMIZER WINDOW ===== */
+
+.optimizer{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.65);
+backdrop-filter:blur(25px);
+display:flex;
+align-items:center;
+justify-content:center;
+z-index:9999;
+}
+
+.optimizerBox{
+width:320px;
+background:#0a0a0a;
+border-radius:20px;
+padding:18px;
+box-shadow:0 0 35px #00ff95;
+}
+
+.terminal{
+height:140px;
+background:#000;
+border-radius:12px;
+padding:10px;
+font-family:monospace;
+font-size:12px;
+color:#00ff95;
+overflow:hidden;
+margin:10px 0;
+}
+
+.progressBar{
+height:6px;
+background:#222;
+border-radius:10px;
+overflow:hidden;
+}
+
+.progress{
+height:100%;
+background:linear-gradient(90deg,#00ff95,#00e1ff);
+transition:.25s;
+}
+
+</style>
+</head>
+<body>
+
+<div id="app" v-cloak>
+  
+
+<!-- OPTIMIZER -->
+<div class="optimizer" v-if="optimizer.show">
+<div class="optimizerBox">
+
+<h3>⚡ Tối ưu máy</h3>
+
+<div class="terminal">
+<div v-for="l in optimizer.logs">{{l}}</div>
+</div>
+
+<div class="progressBar">
+<div class="progress"
+:style="{width:optimizer.progress+'%'}"></div>
+</div>
+
+<p>{{optimizer.progress}}%</p>
+
+</div>
+</div>
+
+<!-- TOAST -->
+<div class="toastWrap">
+<div class="toast"
+v-for="t in toasts"
+:key="t.id"
+:class="t.type">
+{{t.text}}
+</div>
+</div>
+
+<!-- MENU -->
+<div class="menu" v-show="show">
+
+<div class="sidebar">
+
+<div class="tab" :class="{active:tab==='home'}" @click="tab='home'">
+<i class="fa-solid fa-house"></i>
+</div>
+<div class="tab"
+:class="{active:tab==='hack',locked:!keyValid}"
+@click="keyValid ? tab='hack' : notify('Nhập key trước',false)">
+<i class="fa-solid fa-sliders"></i>
+</div>
+
+
+<div class="tab" :class="{active:tab==='info'}" @click="tab='info'">
+<i class="fa-solid fa-circle-info"></i>
+</div>
+
+</div>
+
+<div class="content">
+
+<div v-if="tab==='home'">
+
+<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+
+<img src="https://sf-static.upanhlaylink.com/img/image_2026031317a72f1a2ff9834fec290109dae41bf4.jpg"
+style="width:45px;height:45px;border-radius:50%;box-shadow:0 0 8px #34c759">
+
+<div>
+
+<div style="font-weight:bold;">FastTop IOS</div>
+
+<div style="font-size:12px;color:#9cffc7;display:flex;align-items:center;gap:5px;">
+<span style="width:8px;height:8px;background:#34c759;border-radius:50%;display:inline-block;"></span>
+ONLINE
+</div>
+
+</div>
+</div>
+<p>iOS Version : {{device.ios}}</p>
+<p>Device : {{device.model}}</p>
+<p>Battery : {{device.battery}}%</p>
+</span>
+</p>
+<div class="contactBar">
+
+<a href="https://zalo.me/0396134792" target="_blank">
+<img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Icon_of_Zalo.svg" style="width:20px">
+</a>
+
+<a href="https://facebook.com/cducdz" target="_blank">
+<i class="fa-brands fa-facebook-f"></i>
+</a>
+
+<a href="tel:0396134792">
+<i class="fa-solid fa-phone"></i>
+</a>
+
+</div>
+<div class="keyBox">
+
+<input v-model="userKey" placeholder="Nhập key">
+
+<button @click="checkKey()">Login Key</button>
+
+<!-- TEXT MUA KEY -->
+
+<div class="buyKey">
+Mua key liên hệ 👇
+</div>
+
+<p v-if="keyStatus" style="margin-top:6px;">
+{{keyStatus}}
+</p>
+
+</div>
+</div>
+
+<div v-if="tab==='hack'" class="slide">
+  
+
+<div class="row">
+<span>Optimize CPU</span>
+<label class="switch">
+<input type="checkbox"
+@change="optimizeCPU($event.target.checked)">
+<span class="slider"></span>
+</label>
+</div>
+
+<div class="row">
+<span>FIX RUNG</span>
+<label class="switch">
+<input type="checkbox"
+@change="notify('FIX RUNG',$event.target.checked)">
+<span class="slider"></span>
+</label>
+</div>
+
+<div class="row">
+<span>REGEDIT</span>
+<label class="switch">
+<input type="checkbox"
+@change="notify('REGEDIT',$event.target.checked)">
+<span class="slider"></span>
+</label>
+</div>
+<div style="margin-top:15px">
+
+<div style="margin-bottom:5px">
+Sensitivity : {{sens}}%
+</div>
+
+<input type="range"
+min="0"
+max="100"
+v-model="sens"
+
+class="sensSlider">
+
+</div>
+<div class="row">
+<span>Free Fire</span>
+<label class="switch">
+<input type="checkbox"
+@change="runGame('Free Fire',$event.target.checked)">
+<span class="slider"></span>
+</label>
+</div>
+
+<div class="row">
+<span>Free Fire MAX</span>
+<label class="switch">
+<input type="checkbox"
+@change="runGame('Free Fire MAX',$event.target.checked)">
+<span class="slider"></span>
+</label>
+</div>
+<div class="contactBar">
+
+<a href="https://zalo.me/0396134792" target="_blank">
+<img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Icon_of_Zalo.svg" style="width:20px">
+</a>
+
+<a href="https://facebook.com/cducdz" target="_blank">
+<i class="fa-brands fa-facebook-f"></i>
+</a>
+
+<a href="tel:0396134792">
+<i class="fa-solid fa-phone"></i>
+</a>
+
+</div>
+
+</div>
+
+<div v-if="tab==='info'">
+<h3>Thông tin liên hệ</h3>
+
+<div class="profileText">
+<div class="name">Menu được phải triển bởi Ng Chí Đức</div>
+<div class="status">
+<span class="dot"></span> 
+</div>
+</div>
+
+<div class="contact">
+<a href="https://zalo.me/0396134792" target="_blank">
+<img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Icon_of_Zalo.svg">
+</a>
+
+<a href="https://facebook.com/cducdz" target="_blank">
+<i class="fa-brands fa-facebook-f"></i>
+</a>
+
+<a href="tel:0396134792">
+<i class="fa-solid fa-phone"></i>
+</a>
+</div>
+
+</div>
+
+</div>
+</div>
+
+<div class="floatBtn" @click="show=!show">☰</div>
+
+
+
+</div>
+
+</div>
+
+
+<script>
+
+new Vue({
+el:"#app",
+
+data:{
+tab:"home",
+show:true,
+
+/* key system */
+userKey:"",
+keyStatus:"",
+keyValid:false,
+
+sens:50,
+
+toasts:[],
+
+device:{
+ios:"Detecting...",
+model:"Detecting...",
+browser:"Detecting...",
+battery:0,
+charging:false
+},
+
+optimizer:{
+show:false,
+progress:0,
+logs:[]
+}
+
+},
+
+mounted(){
+this.detectDevice()
+this.initBattery()
+},
+
+methods:{
+
+/* ===== KEY LOGIN ===== */
+
+checkKey(){
+function showToast(text,color="#00ff95"){
+window.addEventListener("load",()=>{
+
+const savedKey = localStorage.getItem("vip_key");
+
+if(savedKey){
+document.getElementById("keyInput").value = savedKey;
+}
+
+});
+const toast=document.getElementById("keyToast");
+
+toast.innerText=text;
+toast.style.color=color;
+toast.classList.add("show");
+
+setTimeout(()=>{
+toast.classList.remove("show");
+},2500);
+
+}
+const API_URL="https://script.google.com/macros/s/AKfycbwl3ofmxcsX1gKHwj5tkU4CluboOGDX2vuxiiexfkNrw73UeTFNUPpLPPmUnps8wUt0/exec";
+fetch(API_URL+"?key="+encodeURIComponent(this.userKey))
+.then(r=>r.json())
+.then(data=>{
+
+if(data.status==="success"){
+localStorage.setItem("vip_key", key);
+showToast("✅ Key hợp lệ");
+this.keyValid=true
+
+}else if(data.status==="expired"){
+
+showToast("⛔ Key hết hạn","#ff3b30");
+
+}else if(data.status==="full"){
+
+showToast("⚠️ Key đã đủ user","#ffaa00");
+
+}else{
+
+this.keyStatus="Key sai"
+showToast("❌ Key sai","#ff3b30");
+}
+
+})
+.catch(()=>{
+this.keyStatus="Không kết nối API"
+})
+
+},
+
+/* ===== DEVICE ===== */
+
+detectDevice(){
+
+const ua=navigator.userAgent
+
+let iosMatch=ua.match(/OS (\d+)_?(\d+)?/)
+
+this.device.ios=iosMatch
+?`iOS ${iosMatch[1]}.${iosMatch[2]||0}`
+:"Unknown"
+
+if(/iPhone/.test(ua)) this.device.model="iPhone"
+else if(/iPad/.test(ua)) this.device.model="iPad"
+else this.device.model="Desktop"
+
+if(ua.includes("CriOS"))
+this.device.browser="Chrome iOS"
+else if(ua.includes("Safari"))
+this.device.browser="Safari"
+else
+this.device.browser="Unknown"
+
+},
+
+/* ===== BATTERY ===== */
+
+initBattery(){
+
+if(!navigator.getBattery) return
+
+navigator.getBattery().then(battery=>{
+
+const update=()=>{
+
+this.device.battery=Math.floor(battery.level*100)
+this.device.charging=battery.charging
+
+}
+
+update()
+
+battery.addEventListener("levelchange",update)
+battery.addEventListener("chargingchange",update)
+
+})
+
+},
+
+/* ===== HAPTIC ===== */
+
+haptic(){
+navigator.vibrate?.(20)
+},
+
+/* ===== TOAST ===== */
+
+notify(name,state){
+
+this.haptic()
+
+const id=Date.now()
+
+this.toasts.push({
+id,
+text:`${name} ${state?"Đã bật":"Đã tắt"}`,
+type:state?"on":"off"
+})
+
+setTimeout(()=>{
+this.toasts=this.toasts.filter(t=>t.id!==id)
+},1800)
+
+},
+
+/* ===== TERMINAL ===== */
+
+runTerminal(steps,doneName,after){
+
+this.optimizer.show=true
+this.optimizer.progress=0
+this.optimizer.logs=[]
+
+let i=0
+
+const run=setInterval(()=>{
+
+if(i<steps.length){
+
+this.optimizer.logs.push("> "+steps[i])
+
+this.optimizer.progress=
+Math.floor(((i+1)/steps.length)*100)
+
+i++
+
+}else{
+
+clearInterval(run)
+
+setTimeout(()=>{
+this.optimizer.show=false
+this.notify(doneName,true)
+after && after()
+},700)
+
+}
+
+},450)
+
+},
+
+/* ===== CPU ===== */
+
+optimizeCPU(state){
+
+if(!state){
+this.notify("Optimize CPU",false)
+return
+}
+
+this.runTerminal([
+"Initializing system...",
+"Scanning CPU cores...",
+"Cleaning RAM cache...",
+"Stopping background tasks...",
+"Boosting performance...",
+"Applying tweaks...",
+"Completed!"
+],"Optimize CPU")
+
+},
+
+/* ===== GAME ===== */
+
+runGame(game,state){
+
+if(!state){
+this.notify(game,false)
+return
+}
+
+/* cần key */
+
+if(!this.keyValid){
+this.notify("Cần nhập key",false)
+return
+}
+
+this.runTerminal([
+"Checking game files...",
+"Loading FASTTOP engine...",
+"Injecting modules...",
+"Unlocking FPS 120...",
+"Optimizing GPU...",
+"Applying configs...",
+"Launching "+game+"...",
+"Completed!"
+],
+game,
+()=>{
+
+if(game==="Free Fire")
+location.href="https://apps.apple.com/app/id1300146617"
+
+if(game==="Free Fire MAX")
+location.href="https://apps.apple.com/app/id1480516829"
+
+})
+
+}
+
+}
+
+})
+
+</script>
+
+</body>
+</html>
+
+  <script>
+    window.onload = function() {
+  var elements = document.getElementsByClassName('color-effect');
+  var index = 0;
+  /* ===== IOS BATTERY REALTIME ===== */
+
+if ('getBattery' in navigator) {
+
+navigator.getBattery().then(function(battery){
+
+const fill = document.getElementById("batteryFill")
+const text = document.getElementById("batteryText")
+const bolt = document.getElementById("batteryBolt")
+
+function updateBattery(){
+
+let level = Math.round(battery.level * 100)
+
+text.innerText = level + "%"
+
+fill.style.width = level + "%"
+
+/* ===== COLOR LIKE IOS ===== */
+if(level <= 20){
+fill.style.background="#ff3b30"   // đỏ
+}
+else if(level <= 50){
+fill.style.background="#ffcc00"   // vàng
+}
+else{
+fill.style.background="#34c759"   // xanh iOS
+}
+
+/* ===== CHARGING ===== */
+if(battery.charging){
+bolt.style.display="block"
+}else{
+bolt.style.display="none"
+}
+
+}
+
+updateBattery()
+
+battery.addEventListener("levelchange",updateBattery)
+battery.addEventListener("chargingchange",updateBattery)
+
+})
+
+}
+
+updateBattery()
+
+battery.addEventListener("levelchange", updateBattery)
+battery.addEventListener("chargingchange", updateBattery)
+
+})
+
+}
+  
+  setInterval(function() {
+    for (var i = 0; i < elements.length; i++) {
+      elements[i].style.color = getRandomColor();
+    }
+  }, 2000);
+
+  function getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }
+
+  // Kiểm tra xem trình duyệt và thiết bị có hỗ trợ API Battery Status không
+  if ('getBattery' in navigator) {
+    navigator.getBattery().then(function (battery) {
+      updateBatteryLevel(battery.level * 100);
+      battery.addEventListener('levelchange', function () {
+        updateBatteryLevel(battery.level * 100);
+      });
+    });
+  }
+
+  // Cập nhật thời gian hiện tại và thứ trong tuần
+  function updateCurrentTime() {
+    var currentTime = document.getElementById("currentTime");
+    var currentDay = document.getElementById("currentDay");
+    var now = new Date();
+    var hours = now.getHours();
+    var minutes = now.getMinutes();
+    var seconds = now.getSeconds();
+    var day = now.getDay();
+
+    currentDay.textContent = "Times: " + getDayOfWeek(day);
+    currentTime.textContent = "" + hours + ":" + minutes + ":" + seconds;
+  }
+
+  // Lấy tên thứ trong tuần
+  function getDayOfWeek(day) {
+    var daysOfWeek = ["Chủ Nhật","Thứ Hai", "Thứ Ba", "Thứ Tư", "Thứ Năm", "Thứ Sáu", "Thứ Bảy"];
+    return daysOfWeek[day];
+  }
+
+  // Cập nhật thời gian hiện tại và thứ trong tuần mỗi giây
+  setInterval(updateCurrentTime, 1000);
+
+  var cpuCount = window.navigator.hardwareConcurrency; // Thay navigator thành window.navigator để tránh lỗi liên quan đến global Navigator interface
+  var cpuInfoElement = document.getElementById("cpuInfo");
+  cpuInfoElement.innerText = "Total Cpu: " + cpuCount;
+  
+  var frameCount = 0;
+  var fps = 0;
+
+  function calculateFPS() {
+    requestAnimationFrame(function() {
+      frameCount++;
+      calculateFPS();
+    });
+  }
+
+  function updateFPS() {
+    setTimeout(function() {
+      fps = frameCount;
+      frameCount = 0;
+      document.getElementById("fps-value").textContent = "Fps Game: " + fps;
+      updateFPS();
+    }, 1000);
+  }
+
+  calculateFPS();
+  updateFPS();
+}
+      
+        function openLink(url) {
+            window.open(url, "_blank");
+        }
+
+h5gg.require(7.9); 
+var h5frida=h5gg.loadPlugin("h5frida", "h5frida-16.0.10.dylib");
+if(!h5frida) throw "Failed to load h5frida plugin";
+
+function ActiveCodePatch(fpath, vaddr, bytes) {
+    if(!h5frida.ActiveCodePatch(fpath, vaddr, bytes)) {
+        var result = h5frida.ApplyCodePatch(fpath, vaddr, bytes);
+
+    } return true;
+}
+function DeactiveCodePatch(fpath, vaddr, bytes) {
+    return h5frida.DeactiveCodePatch(fpath, vaddr, bytes);
+}
+
+    
+
+//0x33538D0
+
+
+var codeStatus = false;
+
+// thả code chức năng ở đây//
+
+function modifyValue(searchValue, replaceValue, addressEndsWith, addressEndsWith2, alertMessage) {
+    h5gg.clearResults();
+    h5gg.searchNumber(searchValue, 'I32', '0x100000000', '0x160000000');
+    const results = h5gg.getResults(h5gg.getResultsCount());
+    let modifiedCount = 0;
+    results.forEach(result => {
+        if (result.address.endsWith(addressEndsWith) || result.address.endsWith(addressEndsWith2)) {
+            h5gg.setValue(result.address, replaceValue.toString(), 'I32');
+            modifiedCount++;
+            if (searchValue === Chao) Chao = replaceValue;
+            if (searchValue === Votay) Votay = replaceValue;
+            if (searchValue === khieukhich) khieukhich = replaceValue;
+            if (searchValue === Buoc1) Buoc1 = replaceValue;
+            if (searchValue === Buoc2) Buoc2 = replaceValue;
+            if (searchValue === Buoc3) Buoc3 = replaceValue;
+
+        }
+    });
+    if (modifiedCount > 0) {
+        if (alertMessage) alert(alertMessage);
+    } else if (alertMessage) {
+        alert("Không tìm thấy kết quả phù hợp để thay đổi.");
+    }
+}
+function Aim180() {
+    // Define the searchAndReplace function inside AimCope
+    function searchAndReplace(searchValue, replaceValue, type) {
+        h5gg.clearResults();
+        h5gg.searchNumber(searchValue, type, '0x100000000', '0x160000000');
+        var results = h5gg.getResults(h5gg.getResultsCount());
+        for (var i = 0; i < results.length; i++) {
+            h5gg.setValue(results[i].address, replaceValue.toString(), type);
+        }
+    }
+
+    // Call searchAndReplace with specified parameters
+    searchAndReplace(1057048494, -2000, 'I32');
+    searchAndReplace(1054951342, -2000, 'I32');
+    searchAndReplace(1053273620, -2000, 'I32');
+}
+
+
+function Norecoil() {
+    // Define the searchAndReplace function inside AimCope
+    function searchAndReplace(searchValue, replaceValue, type) {
+        h5gg.clearResults();
+        h5gg.searchNumber(searchValue, type, '0x100000000', '0x160000000');
+        var results = h5gg.getResults(h5gg.getResultsCount());
+        for (var i = 0; i < results.length; i++) {
+            h5gg.setValue(results[i].address, replaceValue.toString(), type);
+        }
+    }
+
+    // Call searchAndReplace with specified parameters
+    searchAndReplace(1016018816, 6018816, 'I32');
+
+
+	function AimCope() {
+        function searchAndReplace(searchValue,
+        replaceValue,
+        type) {
+        h5gg.clearResults(); h5gg.searchNumber(searchValue,
+        type,
+        '0x100000000',
+        '0x160000000'); var results = h5gg.getResults(h5gg.getResultsCount()); for (var i = 0; i < results.length; i++) {
+        h5gg.setValue(results[i].address, replaceValue.toString(), type)}}
+        searchAndReplace(0.09, 180, 'F32')}
+
+
+
+
+
+
+
+
+
+/*
+
+h5gg.require(7.9); 
+var h5frida=h5gg.loadPlugin("h5frida", "h5frida-16.0.10.dylib");
+if(!h5frida) throw "Failed to load h5frida plugin";
+
+function ActiveCodePatch(fpath, vaddr, bytes) {
+    if(!h5frida.ActiveCodePatch(fpath, vaddr, bytes)) {
+        var result = h5frida.ApplyCodePatch(fpath, vaddr, bytes);
+
+    } return true;
+}
+function DeactiveCodePatch(fpath, vaddr, bytes) {
+    return h5frida.DeactiveCodePatch(fpath, vaddr, bytes);
+}
+*/
+
+var app = new Vue({
+			el: "#app",
+			data() {
+				return {
+					ifshow: true,
+					checked: false,
+					radio: '1',
+					activeSelect: '',
+					selectOption: [{
+				
+					}],
+					input: "",
+					showOption: false,
+					tabValue: "one",
+				}
+			},
+			mounted() {
+				this.setRect(360, 320);
+
+				//设置不可拖动
+				setWindowDrag(0, 0, 0, 0);
+    
+				var layout = function()
+				{
+					//window.orientation是设备握持方向, 不是屏幕显示方向
+					if(window.lastorientation==window.orientation) return;
+					window.lastorientation=window.orientation;
+				
+					//window.screen中的宽高不会随着屏幕旋转更新(只会在初始化的时候固定)
+					if(Math.abs(window.orientation)==90) {
+						//横屏模式
+						setWindowRect(0,0,window.screen.height,window.screen.width);
+					} else {
+						//竖屏模式
+						setWindowRect(0,0,window.screen.width,window.screen.height);
+					}
+				}
+	
+				layout(); //设置旋转屏幕时自动调整布局和画布
+				window.addEventListener("orientationchange", layout, false);
+
+				setButtonAction(function () {
+					var menu = document.querySelector("#app");
+					if (menu.style.display == 'none') {
+						menu.style.display = 'block';
+						//显示菜单之后, 设置触控不可穿透悬浮窗口
+						setWindowTouch(true);
+					} else {
+						menu.style.display = 'none';
+						//隐藏菜单之后, 设置触控穿透悬浮窗口
+						setWindowTouch(false);
+					}
+				});
+			},
+
+			methods: {
+				setRect(w, h, x = -1, y = -1) {
+					var boxW = w;
+					var boxH = h;
+
+					var ayMenu = this.$refs.menuMain;
+					ayMenu.style.width = `${boxW}px`;
+					ayMenu.style.height = `${boxH}px`;
+					if (x == -1) ayMenu.style.left = `calc(50% - ${boxW / 2}px)`;
+					if (y == -1) ayMenu.style.top = `calc(50% - ${boxH / 2}px)`;
+
+	ayMenu.style.width= "520px";
+	ayMenu.style.height= "290px";
+
+    ayMenu.style.borderBottomLeftRadius = "10px";
+    ayMenu.style.borderBottomRightRadius = "10px";
+    ayMenu.style.borderTopLeftRadius = "10px";
+    ayMenu.style.borderTopRightRadius = "10px";              
+				},
+				titleTouchStart(event) {
+					this.touchStartX = parseInt(event.touches[0].clientX);
+					this.touchStartY = parseInt(event.touches[0].clientY);
+
+					var ayMenu = this.$refs.menuMain;
+					this.menuLastX = ayMenu.offsetLeft;
+					this.menuLastY = ayMenu.offsetTop;
+				},
+				titleTouchMove(event) {
+					event.preventDefault();
+					var distanceX = event.touches[0].clientX - this.touchStartX;
+					var distanceY = event.touches[0].clientY - this.touchStartY;
+
+					var ayMenu = this.$refs.menuMain;
+					ayMenu.style.left = this.menuLastX + distanceX + "px";
+					ayMenu.style.top = this.menuLastY + distanceY + "px";
+				},
+				//切换导航栏
+				changeTab(v) {
+					this.tabValue = v;
+				},
+				closeimgui() {
+               var menu = 
+document.querySelector("#app");
+        menu.style.display='none';
+        
+        //隐藏菜单之后, 设置触控穿透悬浮窗口
+        setWindowTouch(false);
+
+				}
+			}
+		});/* VUE */
+new Vue({
+el:"#app",
+data:{
+tab:"home",
+show:true,
+sens:50,
+
+/* TOAST */
+toasts:[],
+
+/* DEVICE INFO */
+device:{
+ios:"Detecting...",
+model:"Detecting...",
+browser:"Detecting..."
+},
+
+/* OPTIMIZER */
+optimizer:{
+show:false,
+progress:0,
+logs:[]
+},
+startRunner:{
+show:false,
+progress:0,
+logs:[]
+},
+
+/* ⭐ START FILES */
+startRunner:{
+show:false,
+progress:0,
+logs:[]
+}
+
+},
+methods:{
+changeSens(){
+this.notify("Sensitivity "+this.sens+"%",true)
+}
+/* ===== RUNG NHẸ ===== */
+haptic(){
+if(navigator.vibrate) navigator.vibrate(20)
+},
+
+/* ===== TOAST ===== */
+notify(name,state){
+
+this.haptic()
+
+const id=Date.now()
+
+this.toasts.push({
+id:id,
+text:name + (state?" Đã bật":" Đã tắt"),
+type:state?"on":"off"
+})
+
+setTimeout(()=>{
+this.toasts =
+this.toasts.filter(t=>t.id!==id)
+},1800)
+
+},
+
+/* ===== OPTIMIZE CPU ===== */
+optimizeCPU(state){
+
+if(!state){
+this.notify("Optimize CPU",false)
+return
+}
+
+this.optimizer.show=true
+this.optimizer.progress=0
+this.optimizer.logs=[]
+
+const steps=[
+"Initializing system...",
+"Scanning CPU cores...",
+"Cleaning RAM cache...",
+"Stopping background tasks...",
+"Boosting performance...",
+"Applying tweaks...",
+"Completed!"
+]
+
+let i=0
+
+const run=setInterval(()=>{
+
+if(i<steps.length){
+
+this.optimizer.logs.push("> "+steps[i])
+this.optimizer.progress+=14
+i++
+
+}else{
+
+clearInterval(run)
+
+setTimeout(()=>{
+this.optimizer.show=false
+this.notify("Optimize CPU",true)
+},800)
+
+}
+
+},500)
+
+},
+
+/* ===== FREE FIRE ===== */
+runGame(game,state){
+
+if(!state){
+this.notify(game,false)
+return
+}
+
+let link=""
+
+/* ===== iOS APP LINK ===== */
+()=>{
+
+this.show = false
+
+if(game==="Free Fire"){
+this.openApp(
+"garenaff://",
+"https://apps.apple.com/app/id1300146617"
+)
+}
+
+if(game==="Free Fire MAX"){
+this.openApp(
+"garenaffmax://",
+"https://apps.apple.com/app/id1480516829"
+)
+}
+
+}
+/* chạy terminal giống optimizer */
+this.runTerminal(
+game,
+[
+"Checking device...",
+"Loading FASTTOP engine...",
+"Applying iOS tweaks...",
+"Unlocking FPS...",
+"Optimizing GPU...",
+"Preparing launch...",
+"Opening "+game+"...",
+"Completed!"
+],
+game
+)
+
+/* mở game sau khi chạy xong */
+setTimeout(()=>{
+window.location.href = link
+},3500)
+
+}
+
+/* DRAG MENU */
+
+let menu=document.querySelector(".menu")
+
+let isDown=false
+let offset=[0,0]
+
+menu.addEventListener("mousedown",e=>{
+isDown=true
+offset=[
+menu.offsetLeft-e.clientX,
+menu.offsetTop-e.clientY
+]
+})
+
+document.addEventListener("mouseup",()=>isDown=false)
+
+document.addEventListener("mousemove",e=>{
+if(isDown){
+menu.style.left=e.clientX+offset[0]+"px"
+menu.style.top=e.clientY+offset[1]+"px"
+menu.style.transform="none"
+}
+})new Vue({
+el:"#app",
+data:{
+tab:"home",
+show:true,
+sens:50,
+startRunner:{
+show:false,
+progress:0,
+logs:[]
+},
+methods:{
+  openApp(appURL, storeURL){
+
+// tạo iframe mở app
+const iframe = document.createElement("iframe")
+iframe.style.display = "none"
+iframe.src = appURL
+document.body.appendChild(iframe)
+
+// fallback store
+setTimeout(()=>{
+window.location.href = storeURL
+},1800)
+
+}
+  changeSens(){
+this.notify("Sensitivity "+this.sens+"%",true)
+}
+  runGame(game,state){
+
+if(!state){
+this.notify(game,false)
+return
+}
+
+this.optimizer.show=true
+this.optimizer.progress=0
+this.optimizer.logs=[]
+
+const steps=[
+"Checking game files...",
+"Loading resources...",
+"Injecting FASTOP modules...",
+"Applying graphics tweaks...",
+"Optimizing memory...",
+"Launching "+game+"...",
+"Completed!"
+]
+
+let i=0
+
+const run=setInterval(()=>{
+
+if(i<steps.length){
+
+this.optimizer.logs.push("> "+steps[i])
+this.optimizer.progress+=14
+i++
+
+}else{
+
+clearInterval(run)
+
+setTimeout(()=>{
+this.optimizer.show=false
+this.notify(game,true)
+},800)
+
+}
+
+},450)
+
+}
+openLink(url){
+window.open(url,"_blank")
+}
+}
+})/* VUE */
+
+new Vue({
+el:"#app",
+
+data:{
+tab:"home",
+show:true,
+versionSelect:false,
+
+toasts:[]
+},
+
+methods:{
+
+/* ================= DEVICE ================= */
+
+detectDevice(){
+
+const ua=navigator.userAgent
+
+let iosMatch=ua.match(/OS (\d+)_?(\d+)?/)
+this.device.ios=iosMatch
+?`iOS ${iosMatch[1]}.${iosMatch[2]||0}`
+:"Unknown"
+
+if(/iPhone/.test(ua)) this.device.model="iPhone"
+else if(/iPad/.test(ua)) this.device.model="iPad"
+else this.device.model="Desktop"
+
+if(ua.includes("CriOS"))
+this.device.browser="Chrome iOS"
+else if(ua.includes("Safari"))
+this.device.browser="Safari"
+else
+this.device.browser="Unknown"
+
+},
+
+/* ================= BATTERY ================= */
+
+initBattery(){
+
+if(!navigator.getBattery) return
+
+navigator.getBattery().then(battery=>{
+
+const update=()=>{
+
+this.device.battery=Math.floor(battery.level*100)
+this.device.charging=battery.charging
+
+}
+
+update()
+
+battery.addEventListener("levelchange",update)
+battery.addEventListener("chargingchange",update)
+
+})
+
+},
+
+/* ================= HAPTIC ================= */
+
+haptic(){
+navigator.vibrate?.(20)
+},
+
+/* ================= TOAST ================= */
+
+notify(name,state){
+
+this.haptic()
+
+const id=Date.now()
+
+this.toasts.push({
+id,
+text:`${name} ${state?"Đã bật":"Đã tắt"}`,
+type:state?"on":"off"
+})
+
+setTimeout(()=>{
+this.toasts=this.toasts.filter(t=>t.id!==id)
+},1800)
+
+},
+
+/* ================= TERMINAL ENGINE ================= */
+
+runTerminal(steps,doneName,after){
+
+this.optimizer.show=true
+this.optimizer.progress=0
+this.optimizer.logs=[]
+
+let i=0
+
+const run=setInterval(()=>{
+
+if(i<steps.length){
+
+this.optimizer.logs.push("> "+steps[i])
+
+this.optimizer.progress=
+Math.floor(((i+1)/steps.length)*100)
+
+i++
+
+}else{
+
+clearInterval(run)
+
+setTimeout(()=>{
+this.optimizer.show=false
+this.notify(doneName,true)
+after && after()
+},700)
+
+}
+
+},450)
+
+},
+
+/* ================= CPU ================= */
+
+optimizeCPU(state){
+
+if(!state){
+this.notify("Optimize CPU",false)
+return
+}
+
+this.runTerminal([
+"Initializing system...",
+"Scanning CPU cores...",
+"Cleaning RAM cache...",
+"Stopping background tasks...",
+"Boosting performance...",
+"Applying tweaks...",
+"Completed!"
+],"Optimize CPU")
+
+},
+
+/* ================= APP OPENER (IOS REAL) ================= */
+
+openApp(scheme,store){
+
+/* thử mở app */
+window.location = scheme
+
+/* nếu fail → mở AppStore */
+setTimeout(()=>{
+window.location = store
+},1600)
+
+},
+
+/* ================= GAME ================= */
+
+runGame(game,state){
+
+if(!state){
+this.notify(game,false)
+return
+}
+
+this.runTerminal([
+"Checking game files...",
+"Loading FASTTOP engine...",
+"Injecting modules...",
+"Unlocking FPS 120...",
+"Optimizing GPU...",
+"Applying configs...",
+"Launching "+game+"...",
+"Completed!"
+],
+game,
+()=>{
+
+/* ẩn menu */
+this.show=false
+
+/* mở game thật */
+
+if(game==="Free Fire"){
+this.openApp(
+"garenaff://",
+"https://apps.apple.com/app/id1300146617"
+)
+}
+
+if(game==="Free Fire MAX"){
+this.openApp(
+"garenaffmax://",
+"https://apps.apple.com/app/id1480516829"
+)
+}
+
+})
+
+}
+
+}
+
+})
+  </script>
+</body>
+</html>
+
+
+  <script>
+    window.onload = function() {
+  var elements = document.getElementsByClassName('color-effect');
+  var index = 0;
+  /* ===== IOS BATTERY REALTIME ===== */
+
+if ('getBattery' in navigator) {
+
+navigator.getBattery().then(function(battery){
+
+const fill = document.getElementById("batteryFill")
+const text = document.getElementById("batteryText")
+const bolt = document.getElementById("batteryBolt")
+
+function updateBattery(){
+
+let level = Math.round(battery.level * 100)
+
+text.innerText = level + "%"
+
+fill.style.width = level + "%"
+
+/* ===== COLOR LIKE IOS ===== */
+if(level <= 20){
+fill.style.background="#ff3b30"   // đỏ
+}
+else if(level <= 50){
+fill.style.background="#ffcc00"   // vàng
+}
+else{
+fill.style.background="#34c759"   // xanh iOS
+}
+
+/* ===== CHARGING ===== */
+if(battery.charging){
+bolt.style.display="block"
+}else{
+bolt.style.display="none"
+}
+
+}
+
+updateBattery()
+
+battery.addEventListener("levelchange",updateBattery)
+battery.addEventListener("chargingchange",updateBattery)
+
+})
+
+}
+
+updateBattery()
+
+battery.addEventListener("levelchange", updateBattery)
+battery.addEventListener("chargingchange", updateBattery)
+
+})
+
+}
+  
+  setInterval(function() {
+    for (var i = 0; i < elements.length; i++) {
+      elements[i].style.color = getRandomColor();
+    }
+  }, 2000);
+
+  function getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }
+
+  // Kiểm tra xem trình duyệt và thiết bị có hỗ trợ API Battery Status không
+  if ('getBattery' in navigator) {
+    navigator.getBattery().then(function (battery) {
+      updateBatteryLevel(battery.level * 100);
+      battery.addEventListener('levelchange', function () {
+        updateBatteryLevel(battery.level * 100);
+      });
+    });
+  }
+
+  // Cập nhật thời gian hiện tại và thứ trong tuần
+  function updateCurrentTime() {
+    var currentTime = document.getElementById("currentTime");
+    var currentDay = document.getElementById("currentDay");
+    var now = new Date();
+    var hours = now.getHours();
+    var minutes = now.getMinutes();
+    var seconds = now.getSeconds();
+    var day = now.getDay();
+
+    currentDay.textContent = "Times: " + getDayOfWeek(day);
+    currentTime.textContent = "" + hours + ":" + minutes + ":" + seconds;
+  }
+
+  // Lấy tên thứ trong tuần
+  function getDayOfWeek(day) {
+    var daysOfWeek = ["Chủ Nhật","Thứ Hai", "Thứ Ba", "Thứ Tư", "Thứ Năm", "Thứ Sáu", "Thứ Bảy"];
+    return daysOfWeek[day];
+  }
+
+  // Cập nhật thời gian hiện tại và thứ trong tuần mỗi giây
+  setInterval(updateCurrentTime, 1000);
+
+  var cpuCount = window.navigator.hardwareConcurrency; // Thay navigator thành window.navigator để tránh lỗi liên quan đến global Navigator interface
+  var cpuInfoElement = document.getElementById("cpuInfo");
+  cpuInfoElement.innerText = "Total Cpu: " + cpuCount;
+  
+  var frameCount = 0;
+  var fps = 0;
+
+  function calculateFPS() {
+    requestAnimationFrame(function() {
+      frameCount++;
+      calculateFPS();
+    });
+  }
+
+  function updateFPS() {
+    setTimeout(function() {
+      fps = frameCount;
+      frameCount = 0;
+      document.getElementById("fps-value").textContent = "Fps Game: " + fps;
+      updateFPS();
+    }, 1000);
+  }
+
+  calculateFPS();
+  updateFPS();
+}
+      
+        function openLink(url) {
+            window.open(url, "_blank");
+        }
+
+h5gg.require(7.9); 
+var h5frida=h5gg.loadPlugin("h5frida", "h5frida-16.0.10.dylib");
+if(!h5frida) throw "Failed to load h5frida plugin";
+
+function ActiveCodePatch(fpath, vaddr, bytes) {
+    if(!h5frida.ActiveCodePatch(fpath, vaddr, bytes)) {
+        var result = h5frida.ApplyCodePatch(fpath, vaddr, bytes);
+
+    } return true;
+}
+function DeactiveCodePatch(fpath, vaddr, bytes) {
+    return h5frida.DeactiveCodePatch(fpath, vaddr, bytes);
+}
+
+    
+
+//0x33538D0
+
+
+var codeStatus = false;
+
+// thả code chức năng ở đây//
+
+function modifyValue(searchValue, replaceValue, addressEndsWith, addressEndsWith2, alertMessage) {
+    h5gg.clearResults();
+    h5gg.searchNumber(searchValue, 'I32', '0x100000000', '0x160000000');
+    const results = h5gg.getResults(h5gg.getResultsCount());
+    let modifiedCount = 0;
+    results.forEach(result => {
+        if (result.address.endsWith(addressEndsWith) || result.address.endsWith(addressEndsWith2)) {
+            h5gg.setValue(result.address, replaceValue.toString(), 'I32');
+            modifiedCount++;
+            if (searchValue === Chao) Chao = replaceValue;
+            if (searchValue === Votay) Votay = replaceValue;
+            if (searchValue === khieukhich) khieukhich = replaceValue;
+            if (searchValue === Buoc1) Buoc1 = replaceValue;
+            if (searchValue === Buoc2) Buoc2 = replaceValue;
+            if (searchValue === Buoc3) Buoc3 = replaceValue;
+
+        }
+    });
+    if (modifiedCount > 0) {
+        if (alertMessage) alert(alertMessage);
+    } else if (alertMessage) {
+        alert("Không tìm thấy kết quả phù hợp để thay đổi.");
+    }
+}
+function Aim180() {
+    // Define the searchAndReplace function inside AimCope
+    function searchAndReplace(searchValue, replaceValue, type) {
+        h5gg.clearResults();
+        h5gg.searchNumber(searchValue, type, '0x100000000', '0x160000000');
+        var results = h5gg.getResults(h5gg.getResultsCount());
+        for (var i = 0; i < results.length; i++) {
+            h5gg.setValue(results[i].address, replaceValue.toString(), type);
+        }
+    }
+
+    // Call searchAndReplace with specified parameters
+    searchAndReplace(1057048494, -2000, 'I32');
+    searchAndReplace(1054951342, -2000, 'I32');
+    searchAndReplace(1053273620, -2000, 'I32');
+}
+
+
+function Norecoil() {
+    // Define the searchAndReplace function inside AimCope
+    function searchAndReplace(searchValue, replaceValue, type) {
+        h5gg.clearResults();
+        h5gg.searchNumber(searchValue, type, '0x100000000', '0x160000000');
+        var results = h5gg.getResults(h5gg.getResultsCount());
+        for (var i = 0; i < results.length; i++) {
+            h5gg.setValue(results[i].address, replaceValue.toString(), type);
+        }
+    }
+
+    // Call searchAndReplace with specified parameters
+    searchAndReplace(1016018816, 6018816, 'I32');
+
+
+	function AimCope() {
+        function searchAndReplace(searchValue,
+        replaceValue,
+        type) {
+        h5gg.clearResults(); h5gg.searchNumber(searchValue,
+        type,
+        '0x100000000',
+        '0x160000000'); var results = h5gg.getResults(h5gg.getResultsCount()); for (var i = 0; i < results.length; i++) {
+        h5gg.setValue(results[i].address, replaceValue.toString(), type)}}
+        searchAndReplace(0.09, 180, 'F32')}
+
+
+
+
+
+
+
+
+
+/*
+
+h5gg.require(7.9); 
+var h5frida=h5gg.loadPlugin("h5frida", "h5frida-16.0.10.dylib");
+if(!h5frida) throw "Failed to load h5frida plugin";
+
+function ActiveCodePatch(fpath, vaddr, bytes) {
+    if(!h5frida.ActiveCodePatch(fpath, vaddr, bytes)) {
+        var result = h5frida.ApplyCodePatch(fpath, vaddr, bytes);
+
+    } return true;
+}
+function DeactiveCodePatch(fpath, vaddr, bytes) {
+    return h5frida.DeactiveCodePatch(fpath, vaddr, bytes);
+}
+*/
+
+var app = new Vue({
+			el: "#app",
+			data() {
+				return {
+					ifshow: true,
+					checked: false,
+					radio: '1',
+					activeSelect: '',
+					selectOption: [{
+				
+					}],
+					input: "",
+					showOption: false,
+					tabValue: "one",
+				}
+			},
+		mounted(){
+const savedKey = localStorage.getItem("savedKey")
+if(savedKey){
+this.userKey = savedKey
+}
+}
+				this.setRect(360, 320);
+
+				//设置不可拖动
+				setWindowDrag(0, 0, 0, 0);
+    
+				var layout = function()
+				{
+					//window.orientation是设备握持方向, 不是屏幕显示方向
+					if(window.lastorientation==window.orientation) return;
+					window.lastorientation=window.orientation;
+				
+					//window.screen中的宽高不会随着屏幕旋转更新(只会在初始化的时候固定)
+					if(Math.abs(window.orientation)==90) {
+						//横屏模式
+						setWindowRect(0,0,window.screen.height,window.screen.width);
+					} else {
+						//竖屏模式
+						setWindowRect(0,0,window.screen.width,window.screen.height);
+					}
+				}
+	
+				layout(); //设置旋转屏幕时自动调整布局和画布
+				window.addEventListener("orientationchange", layout, false);
+
+				setButtonAction(function () {
+					var menu = document.querySelector("#app");
+					if (menu.style.display == 'none') {
+						menu.style.display = 'block';
+						//显示菜单之后, 设置触控不可穿透悬浮窗口
+						setWindowTouch(true);
+					} else {
+						menu.style.display = 'none';
+						//隐藏菜单之后, 设置触控穿透悬浮窗口
+						setWindowTouch(false);
+					}
+				});
+			},
+
+			methods: {
+				setRect(w, h, x = -1, y = -1) {
+					var boxW = w;
+					var boxH = h;
+
+					var ayMenu = this.$refs.menuMain;
+					ayMenu.style.width = `${boxW}px`;
+					ayMenu.style.height = `${boxH}px`;
+					if (x == -1) ayMenu.style.left = `calc(50% - ${boxW / 2}px)`;
+					if (y == -1) ayMenu.style.top = `calc(50% - ${boxH / 2}px)`;
+
+	ayMenu.style.width= "520px";
+	ayMenu.style.height= "290px";
+
+    ayMenu.style.borderBottomLeftRadius = "10px";
+    ayMenu.style.borderBottomRightRadius = "10px";
+    ayMenu.style.borderTopLeftRadius = "10px";
+    ayMenu.style.borderTopRightRadius = "10px";              
+				},
+				titleTouchStart(event) {
+					this.touchStartX = parseInt(event.touches[0].clientX);
+					this.touchStartY = parseInt(event.touches[0].clientY);
+
+					var ayMenu = this.$refs.menuMain;
+					this.menuLastX = ayMenu.offsetLeft;
+					this.menuLastY = ayMenu.offsetTop;
+				},
+				titleTouchMove(event) {
+					event.preventDefault();
+					var distanceX = event.touches[0].clientX - this.touchStartX;
+					var distanceY = event.touches[0].clientY - this.touchStartY;
+
+					var ayMenu = this.$refs.menuMain;
+					ayMenu.style.left = this.menuLastX + distanceX + "px";
+					ayMenu.style.top = this.menuLastY + distanceY + "px";
+				},
+				//切换导航栏
+				changeTab(v) {
+					this.tabValue = v;
+				},
+				closeimgui() {
+               var menu = 
+document.querySelector("#app");
+        menu.style.display='none';
+        
+        //隐藏菜单之后, 设置触控穿透悬浮窗口
+        setWindowTouch(false);
+
+				}
+			}
+		});/* VUE */
+new Vue({
+el:"#app",
+data:{
+tab:"home",
+show:true,
+sens:50,
+
+/* TOAST */
+toasts:[],
+
+/* DEVICE INFO */
+device:{
+ios:"Detecting...",
+model:"Detecting...",
+browser:"Detecting..."
+},
+
+/* OPTIMIZER */
+optimizer:{
+show:false,
+progress:0,
+logs:[]
+},
+startRunner:{
+show:false,
+progress:0,
+logs:[]
+},
+
+/* ⭐ START FILES */
+startRunner:{
+show:false,
+progress:0,
+logs:[]
+}
+
+},
+methods:{
+changeSens(){
+this.notify("Sensitivity "+this.sens+"%",true)
+}
+/* ===== RUNG NHẸ ===== */
+haptic(){
+if(navigator.vibrate) navigator.vibrate(20)
+},
+
+/* ===== TOAST ===== */
+notify(name,state){
+
+this.haptic()
+
+const id=Date.now()
+
+this.toasts.push({
+id:id,
+text:name + (state?" Đã bật":" Đã tắt"),
+type:state?"on":"off"
+})
+
+setTimeout(()=>{
+this.toasts =
+this.toasts.filter(t=>t.id!==id)
+},1800)
+
+},
+
+/* ===== OPTIMIZE CPU ===== */
+optimizeCPU(state){
+
+if(!state){
+this.notify("Optimize CPU",false)
+return
+}
+
+this.optimizer.show=true
+this.optimizer.progress=0
+this.optimizer.logs=[]
+
+const steps=[
+"Initializing system...",
+"Scanning CPU cores...",
+"Cleaning RAM cache...",
+"Stopping background tasks...",
+"Boosting performance...",
+"Applying tweaks...",
+"Completed!"
+]
+
+let i=0
+
+const run=setInterval(()=>{
+
+if(i<steps.length){
+
+this.optimizer.logs.push("> "+steps[i])
+this.optimizer.progress+=14
+i++
+
+}else{
+
+clearInterval(run)
+
+setTimeout(()=>{
+this.optimizer.show=false
+this.notify("Optimize CPU",true)
+},800)
+
+}
+
+},500)
+
+},
+
+/* ===== FREE FIRE ===== */
+runGame(game,state){
+
+if(!state){
+this.notify(game,false)
+return
+}
+
+let link=""
+
+/* ===== iOS APP LINK ===== */
+if(game==="Free Fire"){
+link="https://apps.apple.com/app/id1300146617"
+}
+
+if(game==="Free Fire MAX"){
+link="https://apps.apple.com/app/id1480516829"
+}
+
+/* chạy terminal giống optimizer */
+this.runTerminal(
+game,
+[
+"Checking device...",
+"Loading FASTTOP engine...",
+"Applying iOS tweaks...",
+"Unlocking FPS...",
+"Optimizing GPU...",
+"Preparing launch...",
+"Opening "+game+"...",
+"Completed!"
+],
+game
+)
+
+/* mở game sau khi chạy xong */
+setTimeout(()=>{
+window.location.href = link
+},3500)
+
+}
+
+/* DRAG MENU */
+
+let menu=document.querySelector(".menu")
+
+let isDown=false
+let offset=[0,0]
+
+menu.addEventListener("mousedown",e=>{
+isDown=true
+offset=[
+menu.offsetLeft-e.clientX,
+menu.offsetTop-e.clientY
+]
+})
+
+document.addEventListener("mouseup",()=>isDown=false)
+
+document.addEventListener("mousemove",e=>{
+if(isDown){
+menu.style.left=e.clientX+offset[0]+"px"
+menu.style.top=e.clientY+offset[1]+"px"
+menu.style.transform="none"
+}
+})new Vue({
+el:"#app",
+data:{
+tab:"home",
+show:true,
+sens:50,
+startRunner:{
+show:false,
+progress:0,
+logs:[]
+},
+methods:{
+  changeSens(){
+this.notify("Sensitivity "+this.sens+"%",true)
+}
+  runGame(game,state){
+
+if(!state){
+this.notify(game,false)
+return
+}
+
+this.optimizer.show=true
+this.optimizer.progress=0
+this.optimizer.logs=[]
+
+const steps=[
+"Checking game files...",
+"Loading resources...",
+"Injecting FASTOP modules...",
+"Applying graphics tweaks...",
+"Optimizing memory...",
+"Launching "+game+"...",
+"Completed!"
+]
+
+let i=0
+
+const run=setInterval(()=>{
+
+if(i<steps.length){
+
+this.optimizer.logs.push("> "+steps[i])
+this.optimizer.progress+=14
+i++
+
+}else{
+
+clearInterval(run)
+
+setTimeout(()=>{
+this.optimizer.show=false
+this.notify(game,true)
+},800)
+
+}
+
+},450)
+
+}
+openLink(url){
+window.open(url,"_blank")
+}
+}
+})/* VUE */
+
+new Vue({
+el:"#app",
+
+data:{
+tab:"home",
+show:true,
+versionSelect:false,
+
+toasts:[]
+},
+
+methods:{
+  changeSens(){
+this.notify("Sensitivity "+this.sens+"%",true)
+}
+  runGame(game,state){
+
+if(!state){
+this.notify(game,false)
+return
+}
+
+this.optimizer.show=true
+this.optimizer.progress=0
+this.optimizer.logs=[]
+
+const steps=[
+"Checking game files...",
+"Loading resources...",
+"Injecting FASTOP modules...",
+"Applying graphics tweaks...",
+"Optimizing memory...",
+"Launching "+game+"...",
+"Completed!"
+]
+
+let i=0
+
+const run=setInterval(()=>{
+
+if(i<steps.length){
+
+this.optimizer.logs.push("> "+steps[i])
+this.optimizer.progress+=14
+i++
+
+}else{
+
+clearInterval(run)
+
+setTimeout(()=>{
+this.optimizer.show=false
+this.notify(game,true)
+},800)
+
+}
+
+},450)
+
+}
+  runGame(game,state){
+
+if(!state){
+this.notify(game,false)
+return
+}
+
+this.optimizer.show=true
+this.optimizer.progress=0
+this.optimizer.logs=[]
+
+const steps=[
+"Checking game files...",
+"Loading resources...",
+"Injecting FASTOP modules...",
+"Applying graphics tweaks...",
+"Optimizing memory...",
+"Launching "+game+"...",
+"Completed!"
+]
+
+let i=0
+
+const run=setInterval(()=>{
+
+if(i<steps.length){
+
+this.optimizer.logs.push("> "+steps[i])
+this.optimizer.progress+=14
+i++
+
+}else{
+
+clearInterval(run)
+
+setTimeout(()=>{
+this.optimizer.show=false
+this.notify(game,true)
+},800)
+
+}
+
+},450)
+
+}
+  
+  /* ===== START FILES ===== */
+
+openVersion(){
+this.haptic()
+this.versionSelect = true
+},
+
+selectVersion(v){
+
+this.versionSelect = false
+
+this.notify("FastTop iOS ("+v+")",true)
+
+}
+
+notify(name,state){
+
+const id=Date.now()
+
+this.toasts.push({
+id,
+text: name + (state ? " Enabled" : " Disabled"),
+type: state ? "on" : "off"
+})
+
+setTimeout(()=>{
+this.toasts=this.toasts.filter(t=>t.id!==id)
+},1800)
+
+}
+mounted(){
+const savedKey = localStorage.getItem("savedKey")
+if(savedKey){
+this.userKey = savedKey
+}
+}
+const ua = navigator.userAgent
+
+/* ===== Detect iOS Version ===== */
+let iosMatch = ua.match(/OS (\d+)_?(\d+)?/)
+if(iosMatch){
+this.device.ios = "iOS " + iosMatch[1] + "." + (iosMatch[2]||0)
+}else{
+this.device.ios = "Unknown"
+}
+
+/* ===== Detect Device ===== */
+if(/iPhone/.test(ua)) this.device.model="iPhone"
+else if(/iPad/.test(ua)) this.device.model="iPad"
+else this.device.model="Desktop"
+
+/* ===== Detect Browser ===== */
+if(ua.includes("CriOS")) this.device.browser="Chrome iOS"
+else if(ua.includes("Safari")) this.device.browser="Safari"
+else this.device.browser="Unknown"
+startFiles(){
+
+this.haptic()
+
+this.startRunner.show = true
+this.startRunner.progress = 0
+this.startRunner.logs = []
+
+const steps=[
+"Mounting system files...",
+"Loading bypass modules...",
+"Injecting FastTop kernel...",
+"Preparing graphics tweak...",
+"Initializing Free Fire support...",
+"Optimizing memory...",
+"Finalizing startup..."
+]
+
+let i=0
+
+const run=setInterval(()=>{
+
+if(i<steps.length){
+
+this.startRunner.logs.push("> "+steps[i])
+this.startRunner.progress += 14
+i++
+
+}else{
+
+clearInterval(run)
+
+setTimeout(()=>{
+
+this.startRunner.show=false
+
+// mở chọn version
+this.versionSelect=true
+
+this.notify("FastTop iOS",true)
+
+},700)
+
+}
+
+},450)
+
+},
+}
+
+}
+
+})
+  </script>
+</body>
+</html>
