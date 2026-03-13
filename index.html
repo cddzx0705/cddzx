@@ -5,22 +5,6 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>1\</title>
-
-  <style>
-    
-  </style>
-
-  
-</head>
-<body>
-  <!DOCTYPE html>
-<html>
-
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>JSFiddle 8sogaqph</title>
 
   <style>
@@ -3037,39 +3021,44 @@ margin:5px;
 </head>
 <script>
 
-const SHEET_URL = "https://docs.google.com/spreadsheets/d/1PsGJfUxDHZX_yN_VdHc9YQXBqNGQocUZSynqeHcK7U0/export?format=csv";
+checkKey(){
 
-function checkKey(){
-
+const FIXED_KEY = "CDDZ-FT1DAY";
 const key = document.getElementById("keyInput").value.trim();
 
-fetch(SHEET_URL)
-.then(r => r.text())
-.then(data => {
-
-let rows = data.split("\n");
-let valid = false;
-
-rows.forEach(row=>{
-let k = row.split(",")[0].trim();
-if(k === key){
-valid = true;
+if(!key){
+this.notify("Nhập key!", false);
+return;
 }
-});
 
-if(valid){
-alert("Key hợp lệ");
+if(key === FIXED_KEY){
+
+localStorage.setItem("vip_key", key);
+this.keyValid = true;
+
+this.notify("Key hợp lệ ✅", true);
+
 }else{
-alert("Key sai");
-}
 
-})
-.catch(()=>{
-alert("Không thể kết nối Sheet");
-});
+this.notify("Key sai ❌", false);
 
 }
 
+},
+
+
+/* AUTO LOGIN */
+
+window.onload=function(){
+
+const saved=localStorage.getItem("vip_key");
+
+if(saved){
+document.getElementById("keyInput").value=saved;
+checkKey();
+}
+
+}
 
 </script>
 <body>
@@ -3418,8 +3407,24 @@ ONLINE
 
 <a href="tel:0396134792">
 <i class="fa-solid fa-phone"></i>
+</a>
 
+</div>
+<div class="keyBox">
 
+<input v-model="userKey" placeholder="Nhập key">
+
+<button @click="checkKey()">Login Key</button>
+
+<!-- TEXT MUA KEY -->
+
+<div class="buyKey">
+Mua key liên hệ 👇
+</div>
+
+<p v-if="keyStatus" style="margin-top:6px;">
+{{keyStatus}}
+</p>
 
 </div>
 </div>
@@ -3548,13 +3553,11 @@ el:"#app",
 data:{
 tab:"home",
 show:true,
-
-/* key system */
 userKey:"",
 keyStatus:"",
 keyValid:false,
 
-sens:50,
+sens:0,
 
 toasts:[],
 
@@ -3581,6 +3584,32 @@ this.initBattery()
 
 methods:{
 
+/* ===== KEY LOGIN ===== */
+
+checkKey(){
+
+const KEYS = ["CDDZ-FT1DAY","FASTTOPIOS"];
+const key = this.userKey.trim();
+
+if(!key){
+this.notify("Nhập key!", false);
+return;
+}
+
+if(KEYS.includes(key)){
+
+localStorage.setItem("vip_key", key);
+this.keyValid = true;
+
+this.notify("Key hợp lệ ✅", true);
+
+}else{
+
+this.notify("Key sai ❌", false);
+
+}
+
+},
 
 /* ===== DEVICE ===== */
 
@@ -4405,8 +4434,6 @@ toasts:[]
 },
 
 methods:{
-<input id="keyInput" placeholder="Nhập key">
-<button onclick="loginKey()">Login</button>
 
 /* ================= DEVICE ================= */
 
@@ -4878,11 +4905,17 @@ var app = new Vue({
 					tabValue: "one",
 				}
 			},
-		mounted(){
-const savedKey = localStorage.getItem("savedKey")
-if(savedKey){
-this.userKey = savedKey
+mounted(){
+
+const saved=localStorage.getItem("vip_key");
+
+if(saved){
+this.keyValid=true;
 }
+
+}
+
+
 }
 				this.setRect(360, 320);
 
@@ -5407,6 +5440,14 @@ this.startRunner.progress += 14
 i++
 
 }else{
+document.addEventListener("contextmenu", e => e.preventDefault());
+
+document.onkeydown = function(e) {
+ if (e.key === "F12") return false;
+ if (e.ctrlKey && e.shiftKey && e.key === "I") return false;
+ if (e.ctrlKey && e.shiftKey && e.key === "J") return false;
+ if (e.ctrlKey && e.key === "U") return false;
+};
 
 clearInterval(run)
 
@@ -5431,13 +5472,6 @@ this.notify("FastTop iOS",true)
 }
 
 })
-  </script>
-</body>
-</html>
-
-
-  <script>
-    
   </script>
 </body>
 </html>
