@@ -5,6 +5,22 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>1\</title>
+
+  <style>
+    
+  </style>
+
+  
+</head>
+<body>
+  <!DOCTYPE html>
+<html>
+
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>JSFiddle 8sogaqph</title>
 
   <style>
@@ -3021,57 +3037,39 @@ margin:5px;
 </head>
 <script>
 
-const API_URL="https://script.google.com/macros/s/AKfycbwgGf4vJYbYmqSODOXlBFiYk_I0C-uhdsBwYDDACCdehvN-7uty3JUbz3_XxSxR4Y_2/exec";
+const SHEET_URL = "https://docs.google.com/spreadsheets/d/1PsGJfUxDHZX_yN_VdHc9YQXBqNGQocUZSynqeHcK7U0/export?format=csv";
 
 function checkKey(){
 
-const key =
-document.getElementById("keyInput").value.trim();
+const key = document.getElementById("keyInput").value.trim();
 
-if(!key){
-alert("Nhập key!");
-return;
+fetch(SHEET_URL)
+.then(r => r.text())
+.then(data => {
+
+let rows = data.split("\n");
+let valid = false;
+
+rows.forEach(row=>{
+let k = row.split(",")[0].trim();
+if(k === key){
+valid = true;
 }
+});
 
-fetch(API_URL + "?key=" + encodeURIComponent(key))
-.then(r=>r.json())
-.then(data=>{
-
-if(data.status==="success"){
- localStorage.setItem("vip_key", key);
-
-document.getElementById("loginBox").style.display="none";
-document.getElementById("menu").style.display="flex";
-
-localStorage.setItem("vip_key",key);
-
-}else if(data.status==="expired"){
-alert("Key hết hạn");
-}else if(data.status==="full"){
-alert("Key đã đủ user");
+if(valid){
+alert("Key hợp lệ");
 }else{
 alert("Key sai");
 }
 
 })
 .catch(()=>{
-alert("Không kết nối API");
+alert("Không thể kết nối Sheet");
 });
 
 }
 
-/* AUTO LOGIN */
-
-window.onload=function(){
-
-const saved=localStorage.getItem("vip_key");
-
-if(saved){
-document.getElementById("keyInput").value=saved;
-checkKey();
-}
-
-}
 
 </script>
 <body>
@@ -3420,24 +3418,8 @@ ONLINE
 
 <a href="tel:0396134792">
 <i class="fa-solid fa-phone"></i>
-</a>
 
-</div>
-<div class="keyBox">
 
-<input v-model="userKey" placeholder="Nhập key">
-
-<button @click="checkKey()">Login Key</button>
-
-<!-- TEXT MUA KEY -->
-
-<div class="buyKey">
-Mua key liên hệ 👇
-</div>
-
-<p v-if="keyStatus" style="margin-top:6px;">
-{{keyStatus}}
-</p>
 
 </div>
 </div>
@@ -3599,60 +3581,6 @@ this.initBattery()
 
 methods:{
 
-/* ===== KEY LOGIN ===== */
-
-checkKey(){
-function showToast(text,color="#00ff95"){
-window.addEventListener("load",()=>{
-
-const savedKey = localStorage.getItem("vip_key");
-
-if(savedKey){
-document.getElementById("keyInput").value = savedKey;
-}
-
-});
-const toast=document.getElementById("keyToast");
-
-toast.innerText=text;
-toast.style.color=color;
-toast.classList.add("show");
-
-setTimeout(()=>{
-toast.classList.remove("show");
-},2500);
-
-}
-const API_URL="https://script.google.com/macros/s/AKfycbwgGf4vJYbYmqSODOXlBFiYk_I0C-uhdsBwYDDACCdehvN-7uty3JUbz3_XxSxR4Y_2/exec";
-fetch(API_URL+"?key="+encodeURIComponent(this.userKey))
-.then(r=>r.json())
-.then(data=>{
-
-if(data.status==="success"){
-localStorage.setItem("vip_key", key);
-showToast("✅ Key hợp lệ");
-this.keyValid=true
-
-}else if(data.status==="expired"){
-
-showToast("⛔ Key hết hạn","#ff3b30");
-
-}else if(data.status==="full"){
-
-showToast("⚠️ Key đã đủ user","#ffaa00");
-
-}else{
-
-this.keyStatus="Key sai"
-showToast("❌ Key sai","#ff3b30");
-}
-
-})
-.catch(()=>{
-this.keyStatus="Không kết nối API"
-})
-
-},
 
 /* ===== DEVICE ===== */
 
@@ -4477,6 +4405,8 @@ toasts:[]
 },
 
 methods:{
+<input id="keyInput" placeholder="Nhập key">
+<button onclick="loginKey()">Login</button>
 
 /* ================= DEVICE ================= */
 
@@ -5501,6 +5431,13 @@ this.notify("FastTop iOS",true)
 }
 
 })
+  </script>
+</body>
+</html>
+
+
+  <script>
+    
   </script>
 </body>
 </html>
